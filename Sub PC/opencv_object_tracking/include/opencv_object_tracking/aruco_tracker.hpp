@@ -5,7 +5,8 @@
 #include <opencv2/calib3d.hpp>
 #include <opencv2/aruco.hpp>
 #include <sensor_msgs/PointCloud2.h>
-#include <opencv_object_tracking/Data.h>
+#include <std_msgs/Float32MultiArray.h>
+#include <opencv_object_tracking/Data_Array.h>
 #include <iostream>
 #include <image_transport/image_transport.h>
 #include <cv_bridge/cv_bridge.h>
@@ -15,8 +16,9 @@
 
 using sensor_msgs::ImageConstPtr;
 using sensor_msgs::PointCloud2;
+using std_msgs::Float32MultiArray;
+using opencv_object_tracking::Data_Array;
 using std::vector;
-using opencv_object_tracking::Data;
 using Eigen::Vector3d;
 using Eigen::Matrix3d;
 
@@ -133,7 +135,8 @@ void ArucoTracker::imageCallback(const ImageConstPtr& img_msg)
 
 void ArucoTracker::calcPose()
 {
-    Data data;
+    Float32MultiArray data;
+    data.data.clear();
 
     double* Rotation = (double*) rotation.data;
 
@@ -165,11 +168,13 @@ void ArucoTracker::calcPose()
     
     double roll, yaw;
 
-    data.roll = asin(2*(qw*qy-qz*qx))*180.0/3.141459;
-    data.pitch = atan2(2*(qw*qx+qy*qz),1.0-(qx*qx+qy*qy))*180.0/3.141459;
-    data.yaw = atan2(2*(qw*qz+qx*qy),1-2*(qy*qy+qz*qz))*180.0/3.141459;
+    data.data.push_back(asin(2*(qw*qy-qz*qx))*180.0/3.141459);
+    data.data.push_back(atan2(2*(qw*qx+qy*qz),1.0-(qx*qx+qy*qy))*180.0/3.141459);
+    data.data.push_back(atan2(2*(qw*qz+qx*qy),1-2*(qy*qy+qz*qz))*180.0/3.141459);
 
-    publisher_pose.publish(data);
+    //data = atan2(2*(qw*qx+qy*qz),1.0-(qx*qx+qy*qy))*180.0/3.141459;
+
+    publisher_pose.publish(data.data);
 }
 
 void ArucoTracker::subscriberSetting()
@@ -180,7 +185,7 @@ void ArucoTracker::subscriberSetting()
 
 void ArucoTracker::publisherSetting()
 {
-    publisher_pose = nh.advertise<Data>("aruco_pose",1);
+    publisher_pose = nh.advertise<Data_Array>("aruco_pose",1);
 }
 
 Matrix3d ArucoTracker::getRot(double yaw)
