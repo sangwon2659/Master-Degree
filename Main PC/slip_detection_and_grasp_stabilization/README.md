@@ -6,6 +6,7 @@ Update package lists, download and install NVIDIA driver
 sudo apt-get update
 sudo add-apt-repository ppa:graphics-drivers/ppa
 sudo lshw -c display
+sudo ubuntu-drivers devices
 sudo apt install nvidia-XXX(Check Recommended Version)
 ```
 
