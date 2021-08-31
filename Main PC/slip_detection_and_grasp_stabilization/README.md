@@ -93,9 +93,8 @@ reboot
 ```
 
 ### Testing
-Lets test if all worked well
 ```
-nvidia-smi
+nvcc  --version
 ```
   
 
@@ -125,7 +124,7 @@ sudo dpkg -i libcudnn7-doc_7.5.1.10-1+cuda10.0_amd64.deb
 
 ### Testing
 ```
-nvcc  --version
+cat /usr/local/cuda/include/cudnn.h | grep CUDNN_MAJOR -A 2
 ```
   
 
