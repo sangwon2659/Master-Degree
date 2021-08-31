@@ -125,7 +125,7 @@ sudo chmod a+r /usr/local/cuda-10.0/include/cudnn.h
 ``` 
 
 ***
-OR  
+OR do the following (NOT RECOMMENDED)
   
 Download the three packages:
 - cuDNN Runtime Library for Ubuntu16.04 (Deb)
