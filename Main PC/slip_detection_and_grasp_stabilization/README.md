@@ -102,7 +102,7 @@ nvcc  --version
   
 
 ## Install cuDNN
-#### Download cuDNN v7.5.1 (April 22, 2019), for CUDA 10.0
+#### Download cuDNN v7.4.1 (Nov 8, 2018), for CUDA 10.0
 Download 'cuDNN Library for Linux' on NVIDIA official website
 https://developer.nvidia.com/rdp/cudnn-archive
 
@@ -117,7 +117,7 @@ which nvcc
 #### Copying files according to path 
 Execute the following
 ```
-tar xzvf cudnn-10.0-linux-x64-v7.5.1.10.tgz
+tar xzvf cudnn-10.0-linux-x64-v7.4.1.5.tgz
 sudo cp cuda/lib64/* /usr/local/cuda-10.0/lib64/
 sudo cp cuda/include/* /usr/local/cuda-10.0/include/
 sudo chmod a+r /usr/local/cuda-10.0/lib64/libcudnn*
@@ -135,36 +135,15 @@ Download the three packages:
 #### Install the .deb packages
 ```
 cd Downloads
-sudo dpkg -i libcudnn7_7.5.1.10-1+cuda10.0_amd64.deb
-sudo dpkg -i libcudnn7-dev_7.5.1.10-1+cuda10.0_amd64.deb
-sudo dpkg -i libcudnn7-doc_7.5.1.10-1+cuda10.0_amd64.deb
+sudo dpkg -i libcudnn7_7.4.1.5-1+cuda10.0_amd64.deb
+sudo dpkg -i libcudnn7-dev_7.4.1.5-1+cuda10.0_amd64.deb
+sudo dpkg -i libcudnn7-doc_7.4.1.5-1+cuda10.0_amd64.deb
 ```
 ***  
 
 #### Testing
 ```
 cat /usr/local/cuda/include/cudnn.h | grep CUDNN_MAJOR -A 2
-```
-  
-
-# Install Tensorflow & Keras
-#### Install pip
-```
-sudo apt-get install python-pip python-dev
-pip install future
-```
-#### Linux-64bit GPU python2.7 Version
-```
-export TF_BINARY_URL=https://storage.googleapis.com/tensorflow/linux/gpu/tensorflow-0.9.0-cp27-none-linux_x86_64.whl
-export TF_BINARY_URL=https://storage.googleapis.com/tensorflow/linux/gpu/tensorflow-0.10.0-cp27-none-linux_x86_64.whl
-```
-#### Install Tensorflow
-```
-sudo pip install --upgrade $TF_BINARY_URL
-```
-#### Install Keras
-```
-sudo pip install keras
 ```
   
 
@@ -235,4 +214,66 @@ cs
 chmod +x *.py
 ```
 
+# Install Anaconda 2 (64-bit Linux), Tensorflow & Keras
+## Install Anaconda 2
+#### Download sh file
+https://repo.anaconda.com/archive/  
+(Anaconda2-5.3.0-Linux-x86_64.sh)
+#### Installation
+```
+bash Anaconda2-5.3.0-Linux-x86_64.sh
+source ~/.bashrc
+```
+#### Testing
+```
+python -V
+
+```
+#### Creating Env
+```
+conda create -n Env pip python=2.7
+source activate Env
+```
+#### Packages related to ROS
+```
+pip install --upgrade pip
+pip install -U rosinstall msgpack empy defusedxml netifaces
+```
+  
+## Install Tensorflow
+#### Install with conda environment (Version 2.0 python 2.7 GPU)
+Version Check https://www.tensorflow.org/install/source#tested_build_configurations
+```
+pip install tensorflow-gpu==2.0.0
+```
+  
+## Install Keras
+#### Install with conda environment (Version 2.3.1 python 2.7)
+Version Check https://docs.floydhub.com/guides/environments/
+```
+pip install keras==2.3.1
+```
+
+  
+  
+***
+# Install Tensorflow & Keras
+#### Install pip
+```
+sudo apt-get install python-pip python-dev
+pip install future
+```
+#### Linux-64bit GPU python2.7 Version
+```
+export TF_BINARY_URL=https://storage.googleapis.com/tensorflow/linux/gpu/tensorflow-0.9.0-cp27-none-linux_x86_64.whl
+export TF_BINARY_URL=https://storage.googleapis.com/tensorflow/linux/gpu/tensorflow-0.10.0-cp27-none-linux_x86_64.whl
+```
+#### Install Tensorflow
+```
+sudo pip install --upgrade $TF_BINARY_URL
+```
+#### Install Keras
+```
+sudo pip install keras
+```
 
