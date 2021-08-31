@@ -156,7 +156,23 @@ export ROS_MASTER_URI=http://${ROS_LOCALIP}:11311
 
 ### Configure ROS alias command
 ```
-alias cs='cd ~/catkin_ws/src'
+alias cs='cd ~/catkin_ws/src/slip_detection_and_grasp_stabilization/scripts'
 alias cm='cd ~/catkin_ws && catkin_make'
 ```
 
+## Workspace
+### Make Folder
+```
+mkdir -p ~/catkin_ws/src
+cd catkin_ws/src
+catkin_init_workspace
+cd ..
+cm
+```
+
+### Git clone source file
+```
+cm
+cs
+chmod +x *.py
+```
