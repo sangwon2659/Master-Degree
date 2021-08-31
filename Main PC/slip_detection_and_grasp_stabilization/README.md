@@ -76,6 +76,18 @@ You may have to make some choices in the terminal:
 - Install the CUDA 10.0 Samples? ``` y ```
 
 Leave the rest as default. ``` ENTER ```
+
+### Reboot
+Restart the computer
+```
+reboot
+```
+
+### Testing
+Lets test if all worked well
+```
+nvidia-smi
+```
   
 
 ## Install cuDNN
