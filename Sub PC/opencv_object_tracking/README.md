@@ -359,18 +359,18 @@ rosdep update
 ```
 
 ## Bashrc
-# Load ROS Kinetic Setup
+### Load ROS Kinetic Setup
 ```
 source ~/catkin_ws/devel/setup.bash
 ```
 
-# Configure ROS Network
+### Configure ROS Network
 ```
 export ROS_MASTER_URI=http://165.132.139.127:11311
 export ROS_IP=165.132.139.120
 ```
 
-# Configure ROS alias command
+### Configure ROS alias command
 ```
 alias cs='cd ~/catkin_ws/src'
 alias cm='cd ~/catkin_ws && catkin_make'
