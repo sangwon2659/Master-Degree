@@ -274,7 +274,8 @@ Version Check https://www.tensorflow.org/install/source#tested_build_configurati
 ```
 pip install --upgrade pip
 ```
-#### Before installing tensorflow, move wrapt folder and wrapt-1.10.1-py3.6.egg-info in C:\~\Anaconda2\lib\python2.7\site-packages to a different place then execute the following
+Before installing tensorflow, move wrapt folder and wrapt-1.10.1-py3.6.egg-info  
+in C:\~\Anaconda2\lib\python2.7\site-packages to a different place then execute the following
 ```
 pip install tensorflow-gpu==2.0.0
 ```
