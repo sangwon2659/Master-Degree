@@ -273,10 +273,10 @@ cat /usr/local/cuda/include/cudnn.h | grep CUDNN_MAJOR -A 2
 #### Install with conda environment (Version 2.0 python 2.7 GPU)
 Version Check https://www.tensorflow.org/install/source#tested_build_configurations
 ```
-*pip install --upgrade pip
+pip install --upgrade pip
+pip install tensorflow-gpu==2.0.0
 *sudo apt-get python-dev
 *pip install future
-pip install tensorflow-gpu==2.0.0
 ```
  
 ## Install Keras
