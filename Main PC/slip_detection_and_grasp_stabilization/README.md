@@ -128,6 +128,10 @@ cat /usr/local/cuda/include/cudnn.h | grep CUDNN_MAJOR -A 2
   
 
 # Install Tensorflow & Keras
+### Install pip
+```
+sudo apt-get install python-pip python-dev
+```
 ### Linux-64bit GPU python2.7 Version
 ```
 sudo apt-get install python-pip python-dev
