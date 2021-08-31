@@ -7,7 +7,7 @@ sudo apt-get update
 sudo add-apt-repository ppa:graphics-drivers/ppa
 sudo lshw -c display
 sudo ubuntu-drivers devices
-sudo apt install nvidia-XXX(Check Recommended Version)
+sudo apt install nvidia-XXX(According to Recommended Version)
 ```
 
 ### Reboot
