@@ -1,6 +1,7 @@
-#Main PC Setup
+# Main PC Setup
 Order: NVIDIA driver -> CUDA -> cuDNN -> ROS -> Anaconda -> Tensorflow -> Keras
-
+  
+  
 # Install NVIDIA Driver 410, CUDA 10.0 and cuDNN v7.5.1 on Ubuntu 16.04
 
 ## Install the latest NVIDIA driver
