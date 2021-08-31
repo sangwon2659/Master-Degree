@@ -60,8 +60,9 @@ https://developer.nvidia.com/cuda-10.0-download-archive?target_os=Linux&target_a
 Download the file and execute the following
 
 ```
+cd Downloads
 sudo dpkg -i cuda-repo-ubuntu1604-10-0-local-10.0.130-410.48_1.0-1_amd64.deb
-sudo apt-key add /var/cuda-repo-<version>/7fa2af80.pub
+sudo apt-key add /var/cuda-repo-10-0-local-10.0.130-410.48/7fa2af80.pub
 sudo apt-get update
 sudo apt-get install cuda
 sudo apt-mark hold cuda
