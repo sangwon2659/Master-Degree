@@ -56,7 +56,7 @@ You have to make some choices about your machine to download the file
 - runfile (local)
 
 With the choices made, the following will show (may have to put in key again according to comments in console)
-https://developer.nvidia.com/cuda-10.0-download-archive?target_os=Linux&target_arch=x86_64&target_distro=Ubuntu&target_version=1604&target_type=deblocal
+https://developer.nvidia.com/cuda-10.0-download-archive?target_os=Linux&target_arch=x86_64&target_distro=Ubuntu&target_version=1604&target_type=deblocal  
 Download the file and execute the following
 
 ```
