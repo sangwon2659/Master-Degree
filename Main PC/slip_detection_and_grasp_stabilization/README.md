@@ -10,7 +10,7 @@ Order:
  
  
 # Install Anaconda 2 (64-bit Linux)
-## Setup
+#### Setup
 ```
 sudo apt-get update
 sudo apt-get upgrade
