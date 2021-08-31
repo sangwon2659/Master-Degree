@@ -63,6 +63,19 @@ source ~/.bashrc
 sudo apt install python-rosdep python-rosinstall python-rosinstall-generator python-wstool build-essential
 sudo rosdep init
 rosdep update
+```
+#### Additional dependencies
+Setup 1: Upgrade argparse
+```
+pip install argparse
+```
+Setup 2: Download PyHamcrest‑1.9.0‑py2.py3‑none‑any.whl from
+https://www.lfd.uci.edu/~gohlke/pythonlibs/#PyHamcrest
+```
+pip install PyHamcrest‑1.9.0‑py2.py3‑none‑any.whl
+``` 
+Additional dependencies
+```
 pip install -U rosinstall msgpack empy defusedxml netifaces
 pip install pyserial
 sudo usermod -a -G dialout $a283
