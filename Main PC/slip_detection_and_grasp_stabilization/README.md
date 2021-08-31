@@ -46,8 +46,8 @@ Sun Jan 27 15:33:47 2019
 ```
 The driver was installed.
 
-## Download CUDA Toolkit
-Download the CUDA Toolkit on NVIDIA official website
+## CUDA Toolkit 10.0
+CUDA Toolkit on NVIDIA official website
 https://developer.nvidia.com/cuda-downloads
 
 You have to make some choices about your machine to download the file
@@ -58,18 +58,16 @@ You have to make some choices about your machine to download the file
 - 16.04
 - runfile (local)
 
-### Go to the download folder
-After download the file, go to the download folder:
+or do the following
+
 ```
-cd Downloads
+sudo dpkg -i cuda-repo-ubuntu1604-10-0-local-10.0.130-410.48_1.0-1_amd64.deb
+sudo apt-key add /var/cuda-repo-<version>/7fa2af80.pub
+sudo apt-get update
+sudo apt-get install cuda
 ```
 
-### Run the file
-```
-sudo sh cuda_10.0.130_410.48_linux.run
-```
-
-You have to make some choices in the terminal:
+You may have to make some choices in the terminal:
 
 - Install NVIDIA Accelerated Graphics Driver for Linux-x86_64 384.81? ``` n ```
 - Install the CUDA 10.0 Toolkit? ``` y ```
