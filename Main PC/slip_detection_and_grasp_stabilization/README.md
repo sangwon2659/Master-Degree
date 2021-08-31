@@ -59,7 +59,7 @@ You have to make some choices about your machine to download the file
 - 16.04
 - runfile (local)
 
-With the choices made, the following will show
+With the choices made, the following will show (may have to put in key again according to comments in console)
 
 ```
 sudo dpkg -i cuda-repo-ubuntu1604-10-0-local-10.0.130-410.48_1.0-1_amd64.deb
