@@ -6,7 +6,7 @@ Update package lists, download and install NVIDIA driver
 sudo apt-get update
 sudo add-apt-repository ppa:graphics-drivers/ppa
 sudo apt-get update
-sudo apt-get install nvdia-410
+sudo apt-get install nvidia-410
 sudo apt-mark hold nvidia-410
 sudo reboot
 ```
