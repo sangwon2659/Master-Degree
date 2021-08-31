@@ -1,13 +1,108 @@
 # Main PC Setup
-Order: 
-- NVIDIA driver 
-- CUDA 
-- cuDNN 
-- ROS 
+Order:
 - Anaconda
+- ROS
+- NVIDIA driver
+- CUDA
+- cuDNN  
 - Tensorflow
 - Keras
+ 
+ 
+# Install Anaconda 2 (64-bit Linux)
+## Setup
+```
+sudo apt-get update
+sudo apt-get upgrade
+```
+## Install Anaconda 2
+#### Download sh file
+https://repo.anaconda.com/archive/  
+(Anaconda2-5.3.0-Linux-x86_64.sh)
+#### Installation
+```
+cd Downloads
+bash Anaconda2-5.3.0-Linux-x86_64.sh
+source ~/.bashrc
+```
+#### Testing
+```
+python -V
+pip --version
+
+```
+(pip version 10 at this stage)
   
+
+# Install ROS Kinetic
+## Installation Process
+#### Setup sources.list
+```
+sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
+```
+#### Setup keys
+```
+sudo apt install curl
+curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | sudo apt-key add -
+```
+#### Update
+```
+sudo apt-get update
+```
+#### Installation
+```
+sudo apt-get install ros-kinetic-desktop-full
+```
+#### Environment Setup
+```
+echo "source /opt/ros/kinetic/setup.bash" >> ~/.bashrc
+source ~/.bashrc
+```
+#### Dependencies
+```
+sudo apt install python-rosdep python-rosinstall python-rosinstall-generator python-wstool build-essential
+sudo rosdep init
+rosdep update
+pip install -U rosinstall msgpack empy defusedxml netifaces
+pip install pyserial
+sudo usermod -a -G dialout $a283
+```
+
+## Workspace
+#### Make Folder
+```
+mkdir -p ~/catkin_ws/src
+cd catkin_ws/src
+catkin_init_workspace
+cd ..
+catkin_make
+```
+
+#### Git clone source file
+```
+catkin_make
+cd ~/catkin_ws/src/slip_detection_and_grasp_stabilization/scripts
+chmod +x *.py
+```
+
+## Bashrc
+#### Load ROS Kinetic Setup
+```
+source /opt/ros/kinetic/setup.bash
+source ~/catkin_ws/devel/setup.bash
+```
+
+#### Configure ROS Network
+```
+export ROS_LOCALIP=165.132.139.127
+export ROS_MASTER_URI=http://${ROS_LOCALIP}:11311
+```
+
+#### Configure ROS alias command
+```
+alias cs='cd ~/catkin_ws/src/slip_detection_and_grasp_stabilization/scripts'
+alias cm='cd ~/catkin_ws && catkin_make'
+```
   
 # Install NVIDIA Driver 410, CUDA 10.0 and cuDNN v7.5.1 on Ubuntu 16.04
 
@@ -32,7 +127,7 @@ nvidia-smi
 If appears something like:
 
 ```
-Sun Jan 27 15:33:47 2019       
+Sun Jan 27 15:33:47 2019      
 +-----------------------------------------------------------------------------+
 | NVIDIA-SMI XXX       Driver Version: XXX.XX                                 |
 |-------------------------------+----------------------+----------------------+
@@ -53,7 +148,7 @@ Sun Jan 27 15:33:47 2019
 +-----------------------------------------------------------------------------+
 ```
 The driver was installed.
-  
+ 
 
 ## CUDA Toolkit 10.0
 CUDA Toolkit on NVIDIA official website
@@ -111,7 +206,7 @@ reboot
 ```
 nvcc  --version
 ```
-  
+ 
 
 ## Install cuDNN
 #### Download cuDNN v7.4.1 (Nov 8, 2018), for CUDA 10.0
@@ -126,7 +221,7 @@ Type the following to know the desired path
 ```
 which nvcc
 ```
-#### Copying files according to path 
+#### Copying files according to path
 Execute the following
 ```
 tar xzvf cudnn-10.0-linux-x64-v7.4.1.5.tgz
@@ -134,11 +229,11 @@ sudo cp cuda/lib64/* /usr/local/cuda-10.0/lib64/
 sudo cp cuda/include/* /usr/local/cuda-10.0/include/
 sudo chmod a+r /usr/local/cuda-10.0/lib64/libcudnn*
 sudo chmod a+r /usr/local/cuda-10.0/include/cudnn.h
-``` 
+```
 
 ***
 OR do the following (NOT RECOMMENDED)
-  
+ 
 Download the three packages:
 - cuDNN Runtime Library for Ubuntu16.04 (Deb)
 - cuDNN Developer Library for Ubuntu16.04 (Deb)
@@ -158,108 +253,17 @@ sudo dpkg -i libcudnn7-doc_7.4.1.5-1+cuda10.0_amd64.deb
 cat /usr/local/cuda/include/cudnn.h | grep CUDNN_MAJOR -A 2
 ```
   
-
-# Install ROS Kinetic
-## Installation Process
-#### Setup sources.list
-```
-sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
-```
-#### Setup keys
-```
-sudo apt install curl
-curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | sudo apt-key add -
-```
-#### Update
-```
-sudo apt-get update
-```
-#### Installation
-```
-sudo apt-get install ros-kinetic-desktop-full
-```
-#### Environment Setup
-```
-echo "source /opt/ros/kinetic/setup.bash" >> ~/.bashrc
-source ~/.bashrc
-```
-#### Dependencies
-```
-sudo apt install python-rosdep python-rosinstall python-rosinstall-generator python-wstool build-essential
-sudo apt install python-rosdep
-sudo rosdep init
-rosdep update
-```
-
-## Bashrc
-#### Load ROS Kinetic Setup
-```
-source /opt/ros/kinetic/setup.bash
-source ~/catkin_ws/devel/setup.bash
-```
-
-#### Configure ROS Network
-```
-export ROS_LOCALIP=165.132.139.127
-export ROS_MASTER_URI=http://${ROS_LOCALIP}:11311
-```
-
-#### Configure ROS alias command
-```
-alias cs='cd ~/catkin_ws/src/slip_detection_and_grasp_stabilization/scripts'
-alias cm='cd ~/catkin_ws && catkin_make'
-```
-
-## Workspace
-#### Make Folder
-```
-mkdir -p ~/catkin_ws/src
-cd catkin_ws/src
-catkin_init_workspace
-cd ..
-cm
-```
-
-#### Git clone source file
-```
-cm
-cs
-chmod +x *.py
-```
-
-# Install Anaconda 2 (64-bit Linux), Tensorflow & Keras
-## Install Anaconda 2
-#### Download sh file
-https://repo.anaconda.com/archive/  
-(Anaconda2-5.3.0-Linux-x86_64.sh)
-#### Installation
-```
-bash Anaconda2-5.3.0-Linux-x86_64.sh
-source ~/.bashrc
-```
-#### Testing
-```
-python -V
-
-```
-#### Creating Env
-```
-conda create -n Env pip python=2.7
-source activate Env
-```
-#### Packages related to ROS
-```
-pip install --upgrade pip
-pip install -U rosinstall msgpack empy defusedxml netifaces
-```
-  
+# Install Tensorflow & Keras
 ## Install Tensorflow
 #### Install with conda environment (Version 2.0 python 2.7 GPU)
 Version Check https://www.tensorflow.org/install/source#tested_build_configurations
 ```
+*pip install --upgrade pip
+*sudo apt-get python-dev
+*pip install future
 pip install tensorflow-gpu==2.0.0
 ```
-  
+ 
 ## Install Keras
 #### Install with conda environment (Version 2.3.1 python 2.7)
 Version Check https://docs.floydhub.com/guides/environments/
@@ -267,10 +271,8 @@ Version Check https://docs.floydhub.com/guides/environments/
 pip install keras==2.3.1
 ```
 
-  
-  
 ***
-## Install Tensorflow & Keras without conda (NOT RECOMMENDED)
+## Install Tensorflow & Keras with pip (include just for reference)
 #### Install pip
 ```
 sudo apt-get install python-pip python-dev
@@ -289,4 +291,3 @@ sudo pip install --upgrade $TF_BINARY_URL
 ```
 sudo pip install keras
 ```
-
