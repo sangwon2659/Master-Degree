@@ -331,26 +331,26 @@ limitations under the License.
 
 
 # Install ROS Kinetic
-## Installation Process
-### Setup sources.list
+### Installation Process
+#### Setup sources.list
 ```
 sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
 ```
-### Setup keys
+#### Setup keys
 ```
 sudo apt install curl
 curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | sudo apt-key add -
 ```
-### Installation
+#### Installation
 ```
 sudo apt-get install ros-kinetic-desktop-full
 ```
-### Environment Setup
+#### Environment Setup
 ```
 echo "source /opt/ros/kinetic/setup.bash" >> ~/.bashrc
 source ~/.bashrc
 ```
-### Dependencies
+#### Dependencies
 ```
 sudo apt install python-rosdep python-rosinstall python-rosinstall-generator python-wstool build-essential
 sudo apt install python-rosdep
@@ -358,19 +358,19 @@ sudo rosdep init
 rosdep update
 ```
 
-## Bashrc
-### Load ROS Kinetic Setup
+### Bashrc
+#### Load ROS Kinetic Setup
 ```
 source ~/catkin_ws/devel/setup.bash
 ```
 
-### Configure ROS Network (As 2nd PC)
+#### Configure ROS Network (As 2nd PC)
 ```
 export ROS_MASTER_URI=http://165.132.139.127:11311
 export ROS_IP=165.132.139.120
 ```
 
-### Configure ROS alias command
+#### Configure ROS alias command
 ```
 alias cs='cd ~/catkin_ws/src'
 alias cm='cd ~/catkin_ws && catkin_make'
