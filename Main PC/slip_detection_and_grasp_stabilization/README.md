@@ -1,7 +1,7 @@
 # Install NVIDIA Driver 410, CUDA 10.0 and cuDNN v7.5.1 on Ubuntu 16.04
 
 ## Install the latest NVIDIA driver
-Update package lists, download and install NVIDIA driver
+Update package lists, download and install NVIDIA driver (nvidia-410 for ubuntu 16.04 // nvidia-driver-410 for ubuntu 18.04)
 ```
 sudo apt-get update
 sudo add-apt-repository ppa:graphics-drivers/ppa
