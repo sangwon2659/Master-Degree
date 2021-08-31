@@ -25,13 +25,12 @@ cd Downloads
 bash Anaconda2-5.3.0-Linux-x86_64.sh
 source ~/.bashrc
 ```
-#### Testing
+#### Testing (pip version 10 at this stage)
 ```
 python -V
 pip --version
 
 ```
-(pip version 10 at this stage)
   
 
 # Install ROS Kinetic
