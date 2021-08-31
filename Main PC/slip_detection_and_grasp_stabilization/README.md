@@ -78,6 +78,7 @@ You may have to make some choices in the terminal:
 Leave the rest as default. ``` ENTER ```
 
 ### Export CUDA path
+Save the following in bashrc
 ```
 export LD_LIBRARY_PATH=/usr/local/cuda-10.0/lib64:$LD_LIBRARY_PATH
 export PATH=/usr/local/cuda-10.0/bin:$PATH
