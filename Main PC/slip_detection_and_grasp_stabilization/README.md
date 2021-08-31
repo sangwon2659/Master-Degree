@@ -84,6 +84,8 @@ sudo usermod -a -G dialout $a283
 ## Workspace
 #### Make Folder
 ```
+echo "source /opt/ros/kinetic/setup.bash" >> ~/.bashrc
+source ~/.bashrc
 mkdir -p ~/catkin_ws/src
 cd catkin_ws/src
 catkin_init_workspace
