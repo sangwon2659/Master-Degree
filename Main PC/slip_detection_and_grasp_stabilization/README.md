@@ -12,7 +12,7 @@ sudo apt-mark hold nvidia-410
 sudo reboot
 ```
 
-### Testing
+#### Testing
 Lets test if all worked well
 ```
 nvidia-smi
@@ -48,7 +48,7 @@ CUDA Toolkit on NVIDIA official website
 https://developer.nvidia.com/cuda-downloads
 
 You have to make some choices about your machine to download the file
-### My machine:
+#### My machine:
 - Linux
 - x86_64
 - Ubuntu
@@ -77,44 +77,44 @@ You may have to make some choices in the terminal:
 
 Leave the rest as default. ``` ENTER ```
 
-### Export CUDA path
+#### Export CUDA path
 Save the following in bashrc
 ```
 export LD_LIBRARY_PATH=/usr/local/cuda-10.0/lib64:$LD_LIBRARY_PATH
 export PATH=/usr/local/cuda-10.0/bin:$PATH
 ```
 
-### Reload bash
+#### Reload bash
 ```
 source ~/.bashrc
 ```
 
-### Reboot
+#### Reboot
 Restart the computer
 ```
 reboot
 ```
 
-### Testing
+#### Testing
 ```
 nvcc  --version
 ```
   
 
 ## Install cuDNN
-### Download cuDNN v7.5.1 (April 22, 2019), for CUDA 10.0
+#### Download cuDNN v7.5.1 (April 22, 2019), for CUDA 10.0
 Download 'cuDNN Library for Linux' on NVIDIA official website
 https://developer.nvidia.com/rdp/cudnn-archive
 
 NOTE: *You have to sign up at NVIDIA website before*
 
-### Path setup
+#### Path setup
 Type the following to know the desired path
 
 ```
 which nvcc
 ```
-### Copying files according to path 
+#### Copying files according to path 
 Execute the following
 ```
 tar xzvf cudnn-10.0-linux-x64-v7.5.1.10.tgz
@@ -132,7 +132,7 @@ Download the three packages:
 - cuDNN Developer Library for Ubuntu16.04 (Deb)
 - cuDNN Code Samples and User Guide for Ubuntu16.04 (Deb)
 
-### Install the .deb packages
+#### Install the .deb packages
 ```
 cd Downloads
 sudo dpkg -i libcudnn7_7.5.1.10-1+cuda10.0_amd64.deb
@@ -141,28 +141,28 @@ sudo dpkg -i libcudnn7-doc_7.5.1.10-1+cuda10.0_amd64.deb
 ```
 ***  
 
-### Testing
+#### Testing
 ```
 cat /usr/local/cuda/include/cudnn.h | grep CUDNN_MAJOR -A 2
 ```
   
 
 # Install Tensorflow & Keras
-### Install pip
+#### Install pip
 ```
 sudo apt-get install python-pip python-dev
 pip install future
 ```
-### Linux-64bit GPU python2.7 Version
+#### Linux-64bit GPU python2.7 Version
 ```
 export TF_BINARY_URL=https://storage.googleapis.com/tensorflow/linux/gpu/tensorflow-0.9.0-cp27-none-linux_x86_64.whl
 export TF_BINARY_URL=https://storage.googleapis.com/tensorflow/linux/gpu/tensorflow-0.10.0-cp27-none-linux_x86_64.whl
 ```
-### Install Tensorflow
+#### Install Tensorflow
 ```
 sudo pip install --upgrade $TF_BINARY_URL
 ```
-### Install Keras
+#### Install Keras
 ```
 sudo pip install keras
 ```
@@ -170,29 +170,29 @@ sudo pip install keras
 
 # Install ROS Kinetic
 ## Installation Process
-### Setup sources.list
+#### Setup sources.list
 ```
 sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
 ```
-### Setup keys
+#### Setup keys
 ```
 sudo apt install curl
 curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | sudo apt-key add -
 ```
-### Update
+#### Update
 ```
 sudo apt-get update
 ```
-### Installation
+#### Installation
 ```
 sudo apt-get install ros-kinetic-desktop-full
 ```
-### Environment Setup
+#### Environment Setup
 ```
 echo "source /opt/ros/kinetic/setup.bash" >> ~/.bashrc
 source ~/.bashrc
 ```
-### Dependencies
+#### Dependencies
 ```
 sudo apt install python-rosdep python-rosinstall python-rosinstall-generator python-wstool build-essential
 sudo apt install python-rosdep
@@ -201,25 +201,25 @@ rosdep update
 ```
 
 ## Bashrc
-### Load ROS Kinetic Setup
+#### Load ROS Kinetic Setup
 ```
 source ~/catkin_ws/devel/setup.bash
 ```
 
-### Configure ROS Network
+#### Configure ROS Network
 ```
 export ROS_LOCALIP=165.132.139.127
 export ROS_MASTER_URI=http://${ROS_LOCALIP}:11311
 ```
 
-### Configure ROS alias command
+#### Configure ROS alias command
 ```
 alias cs='cd ~/catkin_ws/src/slip_detection_and_grasp_stabilization/scripts'
 alias cm='cd ~/catkin_ws && catkin_make'
 ```
 
 ## Workspace
-### Make Folder
+#### Make Folder
 ```
 mkdir -p ~/catkin_ws/src
 cd catkin_ws/src
@@ -228,7 +228,7 @@ cd ..
 cm
 ```
 
-### Git clone source file
+#### Git clone source file
 ```
 cm
 cs
