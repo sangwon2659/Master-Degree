@@ -12,3 +12,17 @@ sudo pip install --upgrade $TF_BINARY_URL
 ```
 sudo pip install keras
 ```
+
+# Install Etc
+### Install pandas
+```
+pip install pandas
+```
+### Install sklearn
+```
+pip install -U scikit-learn
+```
+### Install matplotlib
+```
+python -m pip install matplotlib
+```
