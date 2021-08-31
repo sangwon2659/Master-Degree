@@ -113,13 +113,9 @@ Download the three packages:
 - cuDNN Developer Library for Ubuntu16.04 (Deb)
 - cuDNN Code Samples and User Guide for Ubuntu16.04 (Deb)
 
-### Go to downloads folder
-```
-cd Downloads
-```
-
 ### Install the .deb packages
 ```
+cd Downloads
 sudo dpkg -i libcudnn7_7.5.1.10-1+cuda10.0_amd64.deb
 sudo dpkg -i libcudnn7-dev_7.5.1.10-1+cuda10.0_amd64.deb
 sudo dpkg -i libcudnn7-doc_7.5.1.10-1+cuda10.0_amd64.deb
