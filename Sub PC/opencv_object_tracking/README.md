@@ -364,7 +364,7 @@ rosdep update
 source ~/catkin_ws/devel/setup.bash
 ```
 
-### Configure ROS Network
+### Configure ROS Network (As 2nd PC)
 ```
 export ROS_MASTER_URI=http://165.132.139.127:11311
 export ROS_IP=165.132.139.120
