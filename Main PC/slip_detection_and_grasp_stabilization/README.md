@@ -151,10 +151,12 @@ cat /usr/local/cuda/include/cudnn.h | grep CUDNN_MAJOR -A 2
 ### Install pip
 ```
 sudo apt-get install python-pip python-dev
+pip install future
 ```
 ### Linux-64bit GPU python2.7 Version
 ```
 export TF_BINARY_URL=https://storage.googleapis.com/tensorflow/linux/gpu/tensorflow-0.9.0-cp27-none-linux_x86_64.whl
+export TF_BINARY_URL=https://storage.googleapis.com/tensorflow/linux/gpu/tensorflow-0.10.0-cp27-none-linux_x86_64.whl
 ```
 ### Install Tensorflow
 ```
