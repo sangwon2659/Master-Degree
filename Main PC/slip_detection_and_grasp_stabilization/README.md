@@ -78,7 +78,6 @@ Leave the rest as default. ``` ENTER ```
 
 ### Testing
 Let's test if everything worked well
-```
 
 ## Install cuDNN
 ### Download cuDNN v7.4.2 (Dec 14, 2018), for CUDA 10.0
