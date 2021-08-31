@@ -1,19 +1,14 @@
-# Install NVIDIA Driver, CUDA 10.0 and cuDNN v7.4.2 on Ubuntu 16.04
+# Install NVIDIA Driver 410, CUDA 10.0 and cuDNN v7.5.1 on Ubuntu 16.04
 
 ## Install the latest NVIDIA driver
 Update package lists, download and install NVIDIA driver
 ```
 sudo apt-get update
 sudo add-apt-repository ppa:graphics-drivers/ppa
-sudo lshw -c display
-sudo ubuntu-drivers devices
-sudo apt install nvidia-XXX(According to Recommended Version)
-```
-
-### Reboot
-Restart the computer
-```
-reboot
+sudo apt-get update
+sudo apt-get install nvdia-410
+sudo apt-mark hold nvidia-410
+sudo reboot
 ```
 
 ### Testing
@@ -62,10 +57,12 @@ You have to make some choices about your machine to download the file
 With the choices made, the following will show (may have to put in key again according to comments in console)
 
 ```
+wget https://developer.nvidia.com/compute/cuda/10.0/Prod/local_installers/cuda-repo-ubuntu1604-10-0-local-10.0.130-410.48_1.0-1_amd64
 sudo dpkg -i cuda-repo-ubuntu1604-10-0-local-10.0.130-410.48_1.0-1_amd64.deb
 sudo apt-key add /var/cuda-repo-<version>/7fa2af80.pub
 sudo apt-get update
 sudo apt-get install cuda
+sudo apt-mark hold cuda
 ```
 
 You may have to make some choices in the terminal:
@@ -76,6 +73,17 @@ You may have to make some choices in the terminal:
 - Install the CUDA 10.0 Samples? ``` y ```
 
 Leave the rest as default. ``` ENTER ```
+
+### Export CUDA path
+```
+export LD_LIBRARY_PATH=/usr/local/cuda-10.0/lib64:$LD_LIBRARY_PATH
+export PATH=/usr/local/cuda-10.0/bin:$PATH
+```
+
+### Reload bash
+```
+source ~/.bashrc
+```
 
 ### Reboot
 Restart the computer
@@ -91,7 +99,7 @@ nvidia-smi
   
 
 ## Install cuDNN
-### Download cuDNN v7.4.2 (Dec 14, 2018), for CUDA 10.0
+### Download cuDNN v7.5.1 (April 22, 2019), for CUDA 10.0
 Download the cuDNN on NVIDIA official website
 https://developer.nvidia.com/cudnn
 
@@ -109,20 +117,14 @@ cd Downloads
 
 ### Install the .deb packages
 ```
-sudo dpkg -i libcudnn7_7.4.2.24-1+cuda10.0_amd64.deb
-sudo dpkg -i libcudnn7-dev_7.4.2.24-1+cuda10.0_amd64.deb 
-sudo dpkg -i libcudnn7-doc_7.4.2.24-1+cuda10.0_amd64.deb
+sudo dpkg -i libcudnn7_7.5.1.10-1+cuda10.0_amd64.deb
+sudo dpkg -i libcudnn7-dev_7.5.1.10-1+cuda10.0_amd64.deb
+sudo dpkg -i libcudnn7-doc_7.5.1.10-1+cuda10.0_amd64.deb
 ```
 
-### Export CUDA path
+### Testing
 ```
-export LD_LIBRARY_PATH=/usr/local/cuda-10.0/lib64:$LD_LIBRARY_PATH
-export PATH=/usr/local/cuda-10.0/bin:$PATH
-```
-
-### Reload bash
-```
-source ~/.bashrc
+nvcc  --version
 ```
   
 
