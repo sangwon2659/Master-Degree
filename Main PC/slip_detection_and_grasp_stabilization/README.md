@@ -288,7 +288,7 @@ pip install keras==2.3.1
 ```
 
 ***
-## Install Tensorflow & Keras with pip (include just for reference)
+## Install Tensorflow & Keras with pip (included just for reference)
 #### Install pip
 ```
 sudo apt-get install python-pip python-dev
