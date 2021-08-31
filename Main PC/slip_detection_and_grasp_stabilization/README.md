@@ -45,7 +45,7 @@ Sun Jan 27 15:33:47 2019
 +-----------------------------------------------------------------------------+
 ```
 The driver was installed.
-
+  
 
 ## CUDA Toolkit 10.0
 CUDA Toolkit on NVIDIA official website
@@ -76,7 +76,7 @@ You may have to make some choices in the terminal:
 - Install the CUDA 10.0 Samples? ``` y ```
 
 Leave the rest as default. ``` ENTER ```
-
+  
 
 ## Install cuDNN
 ### Download cuDNN v7.4.2 (Dec 14, 2018), for CUDA 10.0
@@ -112,7 +112,7 @@ export PATH=/usr/local/cuda-10.0/bin:$PATH
 ```
 source ~/.bashrc
 ```
-
+  
 
 # Install Tensorflow & Keras
 ### Linux-64bit GPU python2.7 Version
@@ -128,7 +128,7 @@ sudo pip install --upgrade $TF_BINARY_URL
 ```
 sudo pip install keras
 ```
-
+  
 
 # Install ROS Kinetic
 ## Installation Process
