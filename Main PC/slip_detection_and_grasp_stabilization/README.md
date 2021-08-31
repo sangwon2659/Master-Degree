@@ -46,6 +46,7 @@ Sun Jan 27 15:33:47 2019
 ```
 The driver was installed.
 
+
 ## CUDA Toolkit 10.0
 CUDA Toolkit on NVIDIA official website
 https://developer.nvidia.com/cuda-downloads
@@ -58,7 +59,7 @@ You have to make some choices about your machine to download the file
 - 16.04
 - runfile (local)
 
-or do the following
+With the choices made, the following will show
 
 ```
 sudo dpkg -i cuda-repo-ubuntu1604-10-0-local-10.0.130-410.48_1.0-1_amd64.deb
@@ -76,8 +77,6 @@ You may have to make some choices in the terminal:
 
 Leave the rest as default. ``` ENTER ```
 
-### Testing
-Let's test if everything worked well
 
 ## Install cuDNN
 ### Download cuDNN v7.4.2 (Dec 14, 2018), for CUDA 10.0
@@ -114,6 +113,7 @@ export PATH=/usr/local/cuda-10.0/bin:$PATH
 source ~/.bashrc
 ```
 
+
 # Install Tensorflow & Keras
 ### Linux-64bit GPU python2.7 Version
 ```
@@ -128,6 +128,7 @@ sudo pip install --upgrade $TF_BINARY_URL
 ```
 sudo pip install keras
 ```
+
 
 # Install ROS Kinetic
 ## Installation Process
