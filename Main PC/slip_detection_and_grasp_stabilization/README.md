@@ -103,18 +103,19 @@ nvcc  --version
 
 ## Install cuDNN
 ### Download cuDNN v7.5.1 (April 22, 2019), for CUDA 10.0
-Download the cuDNN on NVIDIA official website
+Download 'cuDNN Library for Linux' on NVIDIA official website
 https://developer.nvidia.com/rdp/cudnn-archive
 
 NOTE: *You have to sign up at NVIDIA website before*
 
-Download 'cuDNN Library for Linux'
+### Path setup
+Type the following to know the desired path
 
 ```
 which nvcc
 ```
-
-
+### Copying files according to path 
+Execute the following
 ```
 tar xzvf cudnn-10.0-linux-x64-v7.5.1.10.tgz
 sudo cp cuda/lib64/* /usr/local/cuda-10.0/lib64/
@@ -125,6 +126,7 @@ sudo chmod a+r /usr/local/cuda-10.0/include/cudnn.h
 
 ***
 OR  
+  
 Download the three packages:
 - cuDNN Runtime Library for Ubuntu16.04 (Deb)
 - cuDNN Developer Library for Ubuntu16.04 (Deb)
