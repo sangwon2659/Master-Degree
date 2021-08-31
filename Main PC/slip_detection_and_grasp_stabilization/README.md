@@ -78,7 +78,7 @@ Additional dependencies
 ```
 pip install -U rosinstall msgpack empy defusedxml netifaces
 pip install pyserial
-sudo usermod -a -G dialout $a283
+sudo usermod -a -G dialout $USER
 ```
 
 ## Workspace
