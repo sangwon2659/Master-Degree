@@ -126,7 +126,6 @@ Update package lists, download and install NVIDIA driver
 (nvidia-410 for ubuntu 16.04 // nvidia-driver-410 for ubuntu 18.04)
 ```
 sudo apt-get update
-sudo apt-get upgrade
 sudo add-apt-repository ppa:graphics-drivers/ppa
 sudo apt-get update
 sudo apt-get install nvidia-410
