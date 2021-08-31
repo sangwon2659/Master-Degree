@@ -238,6 +238,7 @@ which nvcc
 #### Copying files according to path
 Execute the following
 ```
+cd Downloads
 tar xzvf cudnn-10.0-linux-x64-v7.4.1.5.tgz
 sudo cp cuda/lib64/* /usr/local/cuda-10.0/lib64/
 sudo cp cuda/include/* /usr/local/cuda-10.0/include/
