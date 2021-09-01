@@ -13,18 +13,6 @@ sudo sh install
 ***
 #### Creating desktop entry
 ```
-sudo wget http://upload.wikimedia.org/wikipedia/commons/2/21/Matlab_Logo.png -O /usr/share/icons/matlab.png
-sudo touch /usr/share/applications/matlab.desktop
-sudo gedit /usr/share/applications/matlab.desktop
-```
-Then paste the following into the file
-```
-#!/usr/bin/env xdg-open
-[Desktop Entry]
-Type=Application
-Icon=/usr/share/icons/matlab.png
-Name=MATLAB R2017b
-Comment=Start MATLAB - The Language of Technical Computing
-Exec=matlab -desktop -useStartupFolderPref 
-Categories=Development;
+sudo apt-get install -no-install-recommends gnome-panel
+sudo gnome-desktop-item-edit /usr/share/applications --create-new
 ```
