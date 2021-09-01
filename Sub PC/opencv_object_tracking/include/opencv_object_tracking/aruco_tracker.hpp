@@ -57,6 +57,8 @@ class ArucoTracker{
     double trace;
     float squareSize;
     float Rotation[3];
+    Data_Array msg;
+    float pose[3];
 
     Vector3d position_;
     Matrix3d R_;
@@ -135,9 +137,6 @@ void ArucoTracker::imageCallback(const ImageConstPtr& img_msg)
 
 void ArucoTracker::calcPose()
 {
-    Float32MultiArray data;
-    data.data.clear();
-
     double* Rotation = (double*) rotation.data;
 
     trace = Rotation[0] + Rotation[4] + Rotation[8];
@@ -168,13 +167,11 @@ void ArucoTracker::calcPose()
     
     double roll, yaw;
 
-    data.data.push_back(asin(2*(qw*qy-qz*qx))*180.0/3.141459);
-    data.data.push_back(atan2(2*(qw*qx+qy*qz),1.0-(qx*qx+qy*qy))*180.0/3.141459);
-    data.data.push_back(atan2(2*(qw*qz+qx*qy),1-2*(qy*qy+qz*qz))*180.0/3.141459);
+    msg.data[0] = asin(2*(qw*qy-qz*qx))*180.0/3.141459;
+    msg.data[1] = atan2(2*(qw*qx+qy*qz),1.0-(qx*qx+qy*qy))*180.0/3.141459;
+    msg.data[2] = atan2(2*(qw*qz+qx*qy),1-2*(qy*qy+qz*qz))*180.0/3.141459;
 
-    //data = atan2(2*(qw*qx+qy*qz),1.0-(qx*qx+qy*qy))*180.0/3.141459;
-
-    publisher_pose.publish(data.data);
+    publisher_pose.publish(msg);
 }
 
 void ArucoTracker::subscriberSetting()
