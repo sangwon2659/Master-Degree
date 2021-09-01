@@ -16,5 +16,5 @@ sudo sh install
 sudo apt-get install --no-install-recommends gnome-panel
 sudo gnome-desktop-item-edit /usr/share/applications --create-new
 ```
-Browse the launch file location  
-Select Image
+- Browse the launch file location  
+- Select Image
