@@ -1,22 +1,70 @@
 # ROS Wrapper for Intel&reg; RealSense&trade; Devices
 These are packages for using Intel RealSense cameras (D400 series SR300 camera and T265 Tracking Module) with ROS.
 
-This version supports Kinetic, Melodic and Noetic distributions.
+## Install ROS Kinetic
+### Installation Process
+#### Setup sources.list
+```
+sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
+```
+#### Setup keys
+```
+sudo apt install curl
+curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | sudo apt-key add -
+```
+#### Update
+```
+sudo apt-get update
+```
+#### Installation
+```
+sudo apt-get install ros-kinetic-desktop-full
+```
+#### Environment Setup
+```
+echo "source /opt/ros/kinetic/setup.bash" >> ~/.bashrc
+source ~/.bashrc
+```
+#### Dependencies
+```
+sudo apt install python-rosdep python-rosinstall python-rosinstall-generator python-wstool build-essential
+sudo apt install python-rosdep
+sudo rosdep init
+rosdep update
+```
 
-For running in ROS2 environment please switch to the [ros2 branch](https://github.com/IntelRealSense/realsense-ros/tree/ros2). </br>
+## Workspace
+#### Make Folder
+```
+mkdir -p ~/catkin_ws/src
+cd catkin_ws/src
+catkin_init_workspace
+cd ..
+catkin_make
+```
 
-LibRealSense2 supported version: v2.48.0 (see [realsense2_camera release notes](https://github.com/IntelRealSense/realsense-ros/releases))
+#### Git clone source file
+```
+catkin_make
 
-## Installation Instructions
+### Bashrc
+#### Load ROS Kinetic Setup
+```
+source ~/catkin_ws/devel/setup.bash
+```
 
-### Ubuntu
-   #### Step 1: Install the ROS distribution
-   - #### Install [ROS Kinetic](http://wiki.ros.org/kinetic/Installation/Ubuntu), on Ubuntu 16.04, [ROS Melodic](http://wiki.ros.org/melodic/Installation/Ubuntu) on Ubuntu 18.04 or [ROS Noetic](http://wiki.ros.org/noetic/Installation/Ubuntu) on Ubuntu 20.04.
+#### Configure ROS Network (As 2nd PC)
+```
+export ROS_MASTER_URI=http://165.132.139.127:11311
+export ROS_IP=165.132.139.120
+```
 
-### Windows
-   #### Step 1: Install the ROS distribution
-   - #### Install [ROS Melodic or later on Windows 10](https://wiki.ros.org/Installation/Windows)
+#### Configure ROS alias command
+```
+alias cs='cd ~/catkin_ws/src'
+alias cm='cd ~/catkin_ws && catkin_make'
 
+## Wrapper installation instructions
 
 ### There are 2 sources to install realsense2_camera from:
 
@@ -35,10 +83,6 @@ LibRealSense2 supported version: v2.48.0 (see [realsense2_camera release notes](
     * librealsense2 is not built to use native v4l2 driver but the less stable RS-USB protocol. That is because the last is more general and operational on a larger variety of platforms.
     * realsense2_description is available as a separate debian package of ROS distribution. It includes the 3D-models of the devices and is necessary for running launch files that include these models (i.e. rs_d435_camera_with_model.launch). It can be installed by typing:
     `sudo apt-get install ros-$ROS_DISTRO-realsense2-description`
-
-  *Windows*
-
-    **Chocolatey distribution Coming soon**
 
 * ### Method 2: The RealSense&trade; distribution:
      > This option is demonstrated in the [.travis.yml](https://github.com/intel-ros/realsense/blob/development/.travis.yml) file. It basically summerize the elaborate instructions in the following 2 steps:
@@ -328,53 +372,3 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 **Other names and brands may be claimed as the property of others*
-
-
-# Install ROS Kinetic
-### Installation Process
-#### Setup sources.list
-```
-sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
-```
-#### Setup keys
-```
-sudo apt install curl
-curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | sudo apt-key add -
-```
-#### Update
-```
-sudo apt-get update
-```
-#### Installation
-```
-sudo apt-get install ros-kinetic-desktop-full
-```
-#### Environment Setup
-```
-echo "source /opt/ros/kinetic/setup.bash" >> ~/.bashrc
-source ~/.bashrc
-```
-#### Dependencies
-```
-sudo apt install python-rosdep python-rosinstall python-rosinstall-generator python-wstool build-essential
-sudo apt install python-rosdep
-sudo rosdep init
-rosdep update
-```
-
-### Bashrc
-#### Load ROS Kinetic Setup
-```
-source ~/catkin_ws/devel/setup.bash
-```
-
-#### Configure ROS Network (As 2nd PC)
-```
-export ROS_MASTER_URI=http://165.132.139.127:11311
-export ROS_IP=165.132.139.120
-```
-
-#### Configure ROS alias command
-```
-alias cs='cd ~/catkin_ws/src'
-alias cm='cd ~/catkin_ws && catkin_make'
