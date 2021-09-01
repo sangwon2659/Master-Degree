@@ -17,6 +17,7 @@ find_package(OpenCV REQUIRED)
 add_message_files(
    FILES
    Data.msg
+   Data_Array.msg
  )
 
 
