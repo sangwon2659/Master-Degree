@@ -45,6 +45,7 @@ catkin_make
 #### Git clone source file
 ```
 catkin_make
+```
 
 ### Bashrc
 #### Load ROS Kinetic Setup
