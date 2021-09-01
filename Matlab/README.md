@@ -11,8 +11,10 @@ sudo sh install
 /usr/local/MATLAB
 ```
 ***
-#### Creating desktop entry
+#### Creating desktop entry (download icon png file beforehand)
 ```
 sudo apt-get install --no-install-recommends gnome-panel
 sudo gnome-desktop-item-edit /usr/share/applications --create-new
 ```
+Browse the launch file location  
+Select Image
