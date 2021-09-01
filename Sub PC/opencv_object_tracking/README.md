@@ -107,19 +107,18 @@ In case the public key still cannot be retrieved, check and specify proxy settin
 - Optionally install the developer and debug packages:  
   `sudo apt-get install librealsense2-dev`  
   `sudo apt-get install librealsense2-dbg`  
-  With `dev` package installed, you can compile an application with **librealsense** using `g++ -std=c++11 filename.cpp -lrealsense2` or an IDE of your choice.
 
-Reconnect the Intel RealSense depth camera and run: `realsense-viewer` to verify the installation.
+- Reconnect the Intel RealSense depth camera and run: `realsense-viewer` to verify the installation.
 
-Verify that the kernel is updated :    
+- Verify that the kernel is updated :    
 `modinfo uvcvideo | grep "version:"` should include `realsense` string
 Refresh the local packages cache by invoking:  
   `sudo apt-get update`  
 
-Upgrade all the installed packages, including `librealsense` with:  
+- Upgrade all the installed packages, including `librealsense` with:  
   `sudo apt-get upgrade`
 
-To upgrade selected packages only a more granular approach can be applied:  
+- To upgrade selected packages only a more granular approach can be applied:  
   `sudo apt-get --only-upgrade install <package1 package2 ...>`  
   E.g:   
   `sudo apt-get --only-upgrade install  librealsense2-utils librealsense2-dkms`  
