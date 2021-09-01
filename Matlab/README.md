@@ -3,7 +3,7 @@
 https://au.mathworks.com/downloads/
 #### Unzip and execute the following
 ```
-cd Downloads
+cd Downloads/matlab_R2021a_glnxa64
 sudo sh install
 ```
 #### Install to the preferred location
