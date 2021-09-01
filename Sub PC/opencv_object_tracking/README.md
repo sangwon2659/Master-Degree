@@ -115,6 +115,7 @@ alias cm='cd ~/catkin_ws && catkin_make'
   ```
   sudo apt-get update
   sudo apt-get --only-upgrade install  librealsense2-utils librealsense2-dkms
+  sudo apt-get install ros-kinetic-ddynamic-reconfigure
   ```
   
    #### OR
