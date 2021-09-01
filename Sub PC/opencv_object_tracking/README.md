@@ -63,6 +63,7 @@ export ROS_IP=165.132.139.120
 ```
 alias cs='cd ~/catkin_ws/src'
 alias cm='cd ~/catkin_ws && catkin_make'
+```
 
 ## Wrapper installation instructions
 
