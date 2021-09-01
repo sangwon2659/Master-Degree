@@ -114,12 +114,6 @@ alias cm='cd ~/catkin_ws && catkin_make'
 - Refresh the local packages cache by invoking:  
   ```
   sudo apt-get update
-  sudo apt-get upgrade
-  ```
-  
-- To upgrade selected packages only a more granular approach can be applied:  
-  ```
-  sudo apt-get --only-upgrade install <package1 package2 ...>
   sudo apt-get --only-upgrade install  librealsense2-utils librealsense2-dkms
   ```
   
