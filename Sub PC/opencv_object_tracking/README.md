@@ -27,7 +27,6 @@ source ~/.bashrc
 #### Dependencies
 ```
 sudo apt install python-rosdep python-rosinstall python-rosinstall-generator python-wstool build-essential
-sudo apt install python-rosdep
 sudo rosdep init
 rosdep update
 ```
