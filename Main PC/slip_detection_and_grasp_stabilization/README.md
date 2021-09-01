@@ -289,7 +289,6 @@ pip install keras==2.3.1
 
 *** 
 ### Reference Purposes  
-The MainCode.py file predicts input data with the loaded model in a loop and does not clear the GPU memory even after the code has been stopped  
 The following code has to be put into the console for gpu memory clearance
 ```
 kill -9 <PID Number>
