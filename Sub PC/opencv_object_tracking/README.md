@@ -98,11 +98,6 @@ alias cm='cd ~/catkin_ws && catkin_make'
     * Otherwise, install from [Linux Debian Installation Guide](https://github.com/IntelRealSense/librealsense/blob/master/doc/distribution_linux.md#installing-the-packages)
       - In that case treat yourself as a developer. Make sure you follow the instructions to also install librealsense2-dev and librealsense2-dkms packages.
 
-    *Windows* 
-    Install using vcpkg
-
-        `vcpkg install realsense2:x64-windows` 
-
    #### OR
    - #### Build from sources by downloading the latest [Intel&reg; RealSense&trade; SDK 2.0](https://github.com/IntelRealSense/librealsense/releases/tag/v2.48.0) and follow the instructions under [Linux Installation](https://github.com/IntelRealSense/librealsense/blob/master/doc/installation.md)
 
@@ -113,11 +108,6 @@ alias cm='cd ~/catkin_ws && catkin_make'
    ```bash
    mkdir -p ~/catkin_ws/src
    cd ~/catkin_ws/src/
-   ```
-   *Windows*
-   ```batch
-   mkdir c:\catkin_ws\src
-   cd c:\catkin_ws\src
    ```
 
    - Clone the latest Intel&reg; RealSense&trade; ROS from [here](https://github.com/intel-ros/realsense/releases) into 'catkin_ws/src/'
@@ -143,11 +133,6 @@ alias cm='cd ~/catkin_ws && catkin_make'
   ```bash
   echo "source ~/catkin_ws/devel/setup.bash" >> ~/.bashrc
   source ~/.bashrc
-  ```
-
-  *Windows*
-  ```batch
-  devel\setup.bat
   ```
 
 ## Usage Instructions
