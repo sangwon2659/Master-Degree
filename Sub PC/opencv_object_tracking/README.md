@@ -91,12 +91,38 @@ alias cm='cd ~/catkin_ws && catkin_make'
 
    ### Step 1: Install the latest Intel&reg; RealSense&trade; SDK 2.0
 
-    *Ubuntu*
-    
-    Install librealsense2 debian package:
-    * Jetson users - use the [Jetson Installation Guide](https://github.com/IntelRealSense/librealsense/blob/master/doc/installation_jetson.md)
-    * Otherwise, install from [Linux Debian Installation Guide](https://github.com/IntelRealSense/librealsense/blob/master/doc/distribution_linux.md#installing-the-packages)
-      - In that case treat yourself as a developer. Make sure you follow the instructions to also install librealsense2-dev and librealsense2-dkms packages.
+- Register the server's public key:  
+`sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key F6E65AC044F831AC80A06380C8B3A55A6F3EFCDE || sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-key F6E65AC044F831AC80A06380C8B3A55A6F3EFCDE`
+In case the public key still cannot be retrieved, check and specify proxy settings: `export http_proxy="http://<proxy>:<port>"`  
+, and rerun the command. See additional methods in the following [link](https://unix.stackexchange.com/questions/361213/unable-to-add-gpg-key-with-apt-key-behind-a-proxy).  
+
+- Add the server to the list of repositories:  
+`sudo add-apt-repository "deb https://librealsense.intel.com/Debian/apt-repo $(lsb_release -cs) main" -u`  
+
+- Install the libraries (see section below if upgrading packages):  
+  `sudo apt-get install librealsense2-dkms`  
+  `sudo apt-get install librealsense2-utils`  
+  The above two lines will deploy librealsense2 udev rules, build and activate kernel modules, runtime library and executable demos and tools.  
+
+- Optionally install the developer and debug packages:  
+  `sudo apt-get install librealsense2-dev`  
+  `sudo apt-get install librealsense2-dbg`  
+  With `dev` package installed, you can compile an application with **librealsense** using `g++ -std=c++11 filename.cpp -lrealsense2` or an IDE of your choice.
+
+Reconnect the Intel RealSense depth camera and run: `realsense-viewer` to verify the installation.
+
+Verify that the kernel is updated :    
+`modinfo uvcvideo | grep "version:"` should include `realsense` string
+Refresh the local packages cache by invoking:  
+  `sudo apt-get update`  
+
+Upgrade all the installed packages, including `librealsense` with:  
+  `sudo apt-get upgrade`
+
+To upgrade selected packages only a more granular approach can be applied:  
+  `sudo apt-get --only-upgrade install <package1 package2 ...>`  
+  E.g:   
+  `sudo apt-get --only-upgrade install  librealsense2-utils librealsense2-dkms`  
 
    #### OR
    - #### Build from sources by downloading the latest [Intel&reg; RealSense&trade; SDK 2.0](https://github.com/IntelRealSense/librealsense/releases/tag/v2.48.0) and follow the instructions under [Linux Installation](https://github.com/IntelRealSense/librealsense/blob/master/doc/installation.md)
