@@ -68,23 +68,7 @@ alias cm='cd ~/catkin_ws && catkin_make'
 
 ### There are 2 sources to install realsense2_camera from:
 
-* ### Method 1: The ROS distribution:
-
-  *Ubuntu*
-
-    realsense2_camera is available as a debian package of ROS distribution. It can be installed by typing:
-    
-    ```sudo apt-get install ros-$ROS_DISTRO-realsense2-camera```
-
-    This will install both realsense2_camera and its dependents, including librealsense2 library and matching udev-rules.
-
-    Notice:
-    * The version of librealsense2 is almost always behind the one availeable in RealSense&trade; official repository.
-    * librealsense2 is not built to use native v4l2 driver but the less stable RS-USB protocol. That is because the last is more general and operational on a larger variety of platforms.
-    * realsense2_description is available as a separate debian package of ROS distribution. It includes the 3D-models of the devices and is necessary for running launch files that include these models (i.e. rs_d435_camera_with_model.launch). It can be installed by typing:
-    `sudo apt-get install ros-$ROS_DISTRO-realsense2-description`
-
-* ### Method 2: The RealSense&trade; distribution:
+* ### The RealSense&trade; distribution:
      > This option is demonstrated in the [.travis.yml](https://github.com/intel-ros/realsense/blob/development/.travis.yml) file. It basically summerize the elaborate instructions in the following 2 steps:
 
 
