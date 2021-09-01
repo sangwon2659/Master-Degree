@@ -1,17 +1,6 @@
 ## Install Tensorflow & Keras
-#### Linux-64bit GPU python 2.7 Version
-```
-sudo apt-get install python-pip python-dev
-export TF_BINARY_URL=https://storage.googleapis.com/tensorflow/linux/gpu/tensorflow-0.9.0-cp27-none-linux_x86_64.whl
-```
-#### Install Tensorflow
-```
-sudo pip install --upgrade $TF_BINARY_URL
-```
-#### Install Keras
-```
-sudo pip install keras
-```
+#### Linux-64bit 16.04 python 2.7 NVIDIA Driver 410 CUDA 10.0 cuDNN 7.4.1 TF 2.0.0 Keras 2.3.1
+Refer to https://github.com/sangwon2659/Master-Degree/tree/main/Main%20PC/slip_detection_and_grasp_stabilization
 
 ## Install Etc (python 2.7)
 #### Install pandas
