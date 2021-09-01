@@ -92,19 +92,19 @@ alias cm='cd ~/catkin_ws && catkin_make'
    ### Step 1: Install the latest Intel&reg; RealSense&trade; SDK 2.0
 
 - Register the server's public key:  
-```
-sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key F6E65AC044F831AC80A06380C8B3A55A6F3EFCDE || sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-key F6E65AC044F831AC80A06380C8B3A55A6F3EFCDE
-```
-In case the public key still cannot be retrieved, check and specify proxy settings: 
-```
-export http_proxy="http://<proxy>:<port>"
-```
-, and rerun the command. See additional methods in the following [link](https://unix.stackexchange.com/questions/361213/unable-to-add-gpg-key-with-apt-key-behind-a-proxy).  
+  ```
+  sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key F6E65AC044F831AC80A06380C8B3A55A6F3EFCDE || sudo apt-  key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-key F6E65AC044F831AC80A06380C8B3A55A6F3EFCDE
+  ```
+  In case the public key still cannot be retrieved, check and specify proxy settings: 
+  ```
+  export http_proxy="http://<proxy>:<port>"
+  ```
+  , and rerun the command. See additional methods in the following [link] (https://unix.stackexchange.com/questions/361213/unable-to-add-gpg-key-with-apt-key-behind-a-proxy).  
 
 - Add the server to the list of repositories:  
-```
-sudo add-apt-repository "deb https://librealsense.intel.com/Debian/apt-repo $(lsb_release -cs) main" -u
-```
+  ```
+  sudo add-apt-repository "deb https://librealsense.intel.com/Debian/apt-repo $(lsb_release -cs) main" -u
+  ```
 
 - Install the libraries (see section below if upgrading packages):  
   ```
