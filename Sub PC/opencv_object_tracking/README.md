@@ -66,8 +66,6 @@ alias cm='cd ~/catkin_ws && catkin_make'
 
 ## Wrapper installation instructions
 
-### There are 2 sources to install realsense2_camera from:
-
 * ### The RealSense&trade; distribution:
      > This option is demonstrated in the [.travis.yml](https://github.com/intel-ros/realsense/blob/development/.travis.yml) file. It basically summerize the elaborate instructions in the following 2 steps:
 
@@ -132,10 +130,10 @@ alias cm='cd ~/catkin_ws && catkin_make'
    ### Step 2: Install Intel&reg; RealSense&trade; ROS from Sources
 - Create a [catkin](http://wiki.ros.org/catkin#Installing_catkin) workspace
    ```bash
-   mkdir -p ~/catkin_ws/src
-   cd ~/catkin_ws/src/
+   mkdir -p ~/catkin_ws_realsense/src
+   cd ~/catkin_ws_realsense/src/
    ```
-- Clone the latest Intel&reg; RealSense&trade; ROS from [here](https://github.com/intel-ros/realsense/releases) into 'catkin_ws/src/'
+- Clone the latest Intel&reg; RealSense&trade; ROS from [here](https://github.com/intel-ros/realsense/releases) into 'catkin_ws_realsense/src/'
    ```bashrc
    git clone https://github.com/IntelRealSense/realsense-ros.git
    cd realsense-ros/
@@ -149,6 +147,8 @@ alias cm='cd ~/catkin_ws && catkin_make'
   catkin_make clean
   catkin_make -DCATKIN_ENABLE_TESTING=False -DCMAKE_BUILD_TYPE=Release
   catkin_make install
+  echo "source ~/catkin_ws_realsense/devel/setup.bash" >> ~/.bashrc
+  source ~/.bashrc
   ```
 
 ## Usage Instructions
