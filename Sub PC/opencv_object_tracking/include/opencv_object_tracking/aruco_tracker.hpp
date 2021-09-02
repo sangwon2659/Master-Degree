@@ -167,9 +167,9 @@ void ArucoTracker::calcPose()
     
     double roll, yaw;
 
-    msg.data[0] = asin(2*(qw*qy-qz*qx))*180.0/3.141459;
-    msg.data[1] = atan2(2*(qw*qx+qy*qz),1.0-(qx*qx+qy*qy))*180.0/3.141459;
-    msg.data[2] = atan2(2*(qw*qz+qx*qy),1-2*(qy*qy+qz*qz))*180.0/3.141459;
+    msg.Data[0] = asin(2*(qw*qy-qz*qx))*180.0/3.141459;
+    msg.Data[1] = atan2(2*(qw*qx+qy*qz),1.0-(qx*qx+qy*qy))*180.0/3.141459;
+    msg.Data[2] = atan2(2*(qw*qz+qx*qy),1-2*(qy*qy+qz*qz))*180.0/3.141459;
 
     publisher_pose.publish(msg);
 }
