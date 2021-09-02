@@ -302,7 +302,7 @@ python setup.py install
 ```
 
 *** 
-### Reference Purposes  
+## Reference Purposes  
 The following code has to be put into the console for gpu memory clearance
 ```
 kill -9 <PID Number>
