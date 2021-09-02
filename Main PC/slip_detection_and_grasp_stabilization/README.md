@@ -276,6 +276,7 @@ cat /usr/local/cuda/include/cudnn.h | grep CUDNN_MAJOR -A 2
 Version Check https://www.tensorflow.org/install/source#tested_build_configurations
 ```
 pip install --upgrade pip
+pip install py-getch
 ```
 Before installing tensorflow, move wrapt folder and wrapt-1.10.1-py3.6.egg-info  
 in C:\~\Anaconda2\lib\python2.7\site-packages to a different place then execute the following
