@@ -77,6 +77,9 @@ Additional dependencies
 ```
 pip install -U rosinstall msgpack empy defusedxml netifaces
 pip install pyserial
+```
+Serial port permission
+```
 sudo usermod -a -G dialout $USER
 ```
 
