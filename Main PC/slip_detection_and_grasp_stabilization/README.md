@@ -291,6 +291,16 @@ Version Check https://docs.floydhub.com/guides/environments/
 pip install keras==2.3.1
 ```
 
+## Extra: Dynamixel Library
+#### Download with git clone
+```
+cd ~/Downloads
+git clone https://github.com/ROBOTIS-GIT/DynamixelSDK.git
+cd DynamixelSDK/python
+python setup.py install
+
+```
+
 *** 
 ### Reference Purposes  
 The following code has to be put into the console for gpu memory clearance
