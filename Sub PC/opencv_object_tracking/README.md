@@ -52,10 +52,10 @@ catkin_make
 source ~/catkin_ws/devel/setup.bash
 ```
 
-#### Configure ROS Network (As Master PC due to ROS wrapper problems that occur when set as 2nd PC)
+#### Configure ROS Network (As Master PC due to ROS wrapper problems when set as 2nd PC)
 ```
-export ROS_MASTER_URI=http://165.132.139.127:11311
-export ROS_IP=165.132.139.120
+export ROS_LOCALIP=165.132.139.120
+export ROS_MASTER_URI=http://${ROS_LOCALIP}:11311
 ```
 
 #### Configure ROS alias command
