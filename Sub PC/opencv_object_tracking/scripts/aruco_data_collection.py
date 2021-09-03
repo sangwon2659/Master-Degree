@@ -5,6 +5,10 @@ from opencv_object_tracking.msg import Data
 from opencv_object_tracking.msg import Data_Array
 sum = np.array([])
 
+###
+Tolerance = 2.5
+###
+
 def callback(data):
     global pub, sum
     pitch = data.Data[1]
@@ -12,10 +16,10 @@ def callback(data):
     if len(sum)>40:
         sum = np.delete(sum,[0])
         moving_avg = np.sum(sum)/40
-        if moving_avg-pitch>2:
-            pub.publish("Slip")
+        if moving_avg-pitch>Tolerance:
+            pub.publish(1)
         else:
-            pub.publish("No-Slip")
+            pub.publish(0)
     else:
         rospy.loginfo("Collecting data for moving average computation")
 
