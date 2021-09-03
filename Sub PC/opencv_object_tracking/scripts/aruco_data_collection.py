@@ -6,7 +6,7 @@ from opencv_object_tracking.msg import Data_Array
 sum = np.array([])
 
 ###
-Tolerance = 2.5
+tolerance = 2.5
 ###
 
 def callback(data):
@@ -16,7 +16,7 @@ def callback(data):
     if len(sum)>40:
         sum = np.delete(sum,[0])
         moving_avg = np.sum(sum)/40
-        if moving_avg-pitch>Tolerance:
+        if moving_avg-pitch>tolerance:
             pub.publish(1)
         else:
             pub.publish(0)
