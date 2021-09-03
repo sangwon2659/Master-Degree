@@ -1,1 +1,1 @@
-string Data
+int32 Data
