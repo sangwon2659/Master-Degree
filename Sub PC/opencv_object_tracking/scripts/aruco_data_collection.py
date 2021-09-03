@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import rospy
 import numpy as np
-from opencv_object_tracking.msg import Data
+from opencv_object_tracking.msg import Data_Single
 from opencv_object_tracking.msg import Data_Array
 sum = np.array([])
 
@@ -26,7 +26,7 @@ def callback(data):
 def talker():
     global pub
     rospy.init_node('aruco_pose_ground_truth', anonymous=True)
-    pub = rospy.Publisher('aruco_pose_ground_truth', Data, queue_size=10)
+    pub = rospy.Publisher('aruco_pose_ground_truth', Data_Single, queue_size=10)
     rospy.Subscriber("aruco_pose", Data_Array, callback)
     rospy.spin()
 
