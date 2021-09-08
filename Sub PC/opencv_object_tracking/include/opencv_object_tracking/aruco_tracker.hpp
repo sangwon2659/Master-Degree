@@ -108,7 +108,7 @@ void ArucoTracker::imageCallback(const ImageConstPtr& img_msg)
     cv::Ptr<cv::aruco::Dictionary> dictionary = cv::aruco::getPredefinedDictionary(cv::aruco::DICT_7X7_100);
     cv::aruco::detectMarkers(img,dictionary,markerCorners,markerIds,parameters,rejectedCandidates);
 
-    cv::aruco::drawDetectedMarkers(img,markerCorners,markerIds);
+    //cv::aruco::drawDetectedMarkers(img,markerCorners,markerIds);
 
     if(markerIds.size()>0)
     {
@@ -149,7 +149,6 @@ void ArucoTracker::calcPose()
     s[2] = (Rotation[3] - Rotation[1])/sin(theta)/2.0;
     
     double qx, qy, qz, qw;
-    double pitch;
 
     qw = cos(theta/2.0);
     qx = sin(theta/2.0)*s[0];
@@ -164,12 +163,13 @@ void ArucoTracker::calcPose()
         qz = 0.0;
     }
 
-    
-    double roll, yaw;
+    double yaw;
+    yaw = atan2(2*(qw*qz+qx*qy),1-2*(qy*qy+qz*qz));
+    position_ = getRot(yaw)*position_;
 
-    msg.Data[0] = asin(2*(qw*qy-qz*qx))*180.0/3.141459;
-    msg.Data[1] = atan2(2*(qw*qx+qy*qz),1.0-(qx*qx+qy*qy))*180.0/3.141459;
-    msg.Data[2] = atan2(2*(qw*qz+qx*qy),1-2*(qy*qy+qz*qz))*180.0/3.141459;
+    msg.Data[0] = atan2(2*(qw*qx+qy*qz),1.0-(qx*qx+qy*qy))*180.0/3.141459; //pitch
+    msg.Data[1] = position_(1)*1000; //into and out of screen direction (scaled up for convenience)
+    msg.Data[2] = position_(2)*1000; //upwards and downwards direction (scaled up for convenience)
 
     publisher_pose.publish(msg);
 }
