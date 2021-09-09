@@ -27,7 +27,7 @@ PROTOCOL_VERSION = 2.0
 ###
 # Default setting
 DXL_ID = [1,2,3,4,5] # 5 is the gripper
-joint_angle_data_collection = [180.0, 172.0, 180.0, 270.0, 220.0] # Angle for joints 1~4 and gripper
+joint_angle_data_collection = [180.0, 172.0, 180.0, 270.0, 180.0] # Angle for joints 1~4 and gripper
 ###
 
 Num_of_DXL = len(DXL_ID)
