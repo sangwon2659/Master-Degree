@@ -1,0 +1,31 @@
+This paper presents and evaluates a slip detection algorithm that only utilizes output data from low-cost normal force sensor arrays. In particular, the algorithm makes use of the normal force data that has been computed to: the covariance among sensing points of the sensor array and the frequency of the output sum of the respective sensing points. The slip detection system, for the purpose of conducting a binary classification of slip or no-slip, applies this processed data as input data for a lookback multi-layered perceptron network. The performance of the algorithm is evaluated with simple pick-and-place and object-weight-varying missions after it having been set to run online on a robotic gripper that has been attached to a manipulator.
+This research is unique in that it aggregates network training data with a method that produces normal force data that very much resembles that of real-world slip and no-slip. Not only that, the covariance and frequency data that have been chosen as the input data for the network are not chosen in an arbitrary manner but instead after a comparison of several other input data candidates. This sets the paper on a disparate stance from contemporary papers since many do not examine the effective of their chosen network-input data. In fact, this paper goes the extra mile by conducting additional parameter adjustments for the computation of covariance and frequency in order to enhance the performance of the algorithm. Lastly, this research not only determine its classification network to use after having compared a broad selection of other potential classification methods but also further enhances the selected network after conducting online experiments.
+
+paper concentrates on 
+
+the decision to utilize covariance and frequency data as the input for the network is not an arbitrary decision but one that has been made after a comparison of several other input data candidates. Additional parameter adjustments - regrading the computation of this input data - were conducted for the enhancement of the performance of the algorithm. In addition 
+
+
+produce normal force data that most resembles that of real-world slip and no-slip.
+
+
+data that has been labeled slip and no-slip 
+
+
+slip and no-slip labeldata 
+
+This processed data, for the purpose of conducting a binary classification of slip or no-slip, is input into a lookback multi-layered perceptron network. The algorithm is ran online on a robotic gripper that has been attached to a manipulator and its performance is evaluated with simple pick-and-place and object-weight-varying missions. 
+
+Low-cost sensor array
+Data collection method much resembling real-world slip
+Processed data and classification method selected with reasoning
+
+is input into a lookback multi-layered perceptron network that conducts a binary classification of slip and no-slip.
+
+In particular, covariance among the different sensing points and frequency of the sum of the sensor outputs are computed as inputs of the algorithm.
+
+covariance be
+
+a slip detection algorithm that only utilizes the normal force data measured by low-cost sensor arrays. Initially, normal force data is collected while the gripper is grasping the pre-selected objects and it is labeled as slip or no-slip. This data is then converted into both covariance and frequency data and applied to train a lookback multi-layered perceptron binary classification network. After that, the prediction model is implemented onto the hardware to classify slip and no-slip in real-time. Finally, the performance of the algorithm is evaluated by merging it with a simple grasp correction algorithm and examining whether the gripper can maintain its stable grasp in various contexts.
+
+This paper has its novelty in that, first, the data collection method is designed so that the slip or no-slip labeled data most resembles that of the real-world. This is done with the implementation of the ArUco marker system and inducing of the slip in the most natural ways. Not only that, 
