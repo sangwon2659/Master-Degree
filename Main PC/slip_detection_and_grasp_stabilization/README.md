@@ -109,7 +109,7 @@ source /opt/ros/kinetic/setup.bash
 source ~/catkin_ws/devel/setup.bash
 ```
 
-#### Configure ROS Network (As 2nd PC due to ROS wrapper problems when set to Master PC)
+#### Configure ROS Network (as 2nd PC due to ROS wrapper problems when set to Master PC)
 ```
 export ROS_MASTER_URI=http://165.132.139.120:11311
 export ROS_IP=165.132.139.127
