@@ -72,10 +72,6 @@ evaluation = model.evaluate(x_test_data, y_test_data)
 
 x_test_data_ = x_test_data[0]
 x_test_data_ = x_test_data_.reshape(1,FFT_Hz)
-#print(np.shape(x_test_data_))
-#print(x_test_data_)
-#print(np.shape(x_test_data))
-#print(x_test_data)
 prediction = model.predict(x_test_data_)
 print(prediction)
 
