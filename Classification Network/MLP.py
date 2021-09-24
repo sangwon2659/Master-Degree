@@ -53,6 +53,7 @@ for i in range(test_max-test_min):
 print(np.shape(x_test_data[0]))
 
 # Defining model
+# Activation function: ReLU and for the last one Sigmoid since binary classification
 model = Sequential()
 model.add(Dense(1024, input_shape=(FFT_Hz,), activation='relu'))
 model.add(Dense(512, activation='relu'))
@@ -64,6 +65,8 @@ model.add(Dense(1, activation='sigmoid'))
 
 model.summary()
 
+# Binary classification so binary_crossentropy
+# Is 'adam' the most suitable optimizer?
 model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
 history = model.fit(x_train_data, y_train_data, epochs=epoch, batch_size=10, verbose=1)
 
