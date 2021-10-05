@@ -30,7 +30,7 @@ void HX711::begin(byte dout, byte pd_sck, byte gain) {
 // Original algorithm of identifying whether the sensor is read to send data
 // When the sensor outputs low after sending a packet of data means it is ready to send another
 bool HX711::is_ready() {
-  delayMicroseconds(100);
+  delayMicroseconds(1);
   return digitalRead(DOUT) == LOW;
 }
 
