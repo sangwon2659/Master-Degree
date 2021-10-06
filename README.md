@@ -6,7 +6,7 @@ Slip Detection and Grasp Stabilization with Low-Cost Normal Force Sensor Arrays
 Hardware:  
 -10 Honeywell FSS Sensors  
 -Robotis Linear Gripper  
--Linear Railway with a Step Motor  
+-Robotis Open Manipulator
 -3 Arduinos  
 -2 PC with Ubuntu 16.04 & ROS Kinetic  
 -Real Sense D435i  
