@@ -13,11 +13,11 @@ n_covariance = 10
 # Number of sample frequencies required
 n_frequency = 40
 # Number of lookbacks of whole sequence of data
-n_lookback = 4
+n_lookback = 0
 # Scaling the covariance in order to match significance with the frequency data
 scale_covariance = 1000
 # Multiple for the normalization process
-normalizer_constant = 1
+normalizer_constant = 8000000
 
 # Using 2 of 5-Channel FSS Sensors
 n_ch = 5
@@ -41,7 +41,7 @@ Slip_NoSlip = 0.0
 Diff_Matrix = np.zeros((n_covariance, n_covariance))
 
 # Declaring the USB port for which the arduino is connected
-ser = serial.Serial(port = '/dev/ttyUSB2', baudrate=115200)
+ser = serial.Serial(port = '/dev/ttyUSB0', baudrate=115200)
 ser_ = serial.Serial(port = '/dev/ttyUSB1', baudrate=115200)
 
 # Thread adjusted to 80Hz from the specifications of the FSS sensor
@@ -51,18 +51,19 @@ thread_ = 0.0125
 MLP_Model = load_model('MLP_Model.h5')
 
 def thread_run():
-	global pub, pub2, pub3, Slip_NoSlip, Slip_Vector_sum, FSS_sum_temp
+	global pub, pub2, pub3, Slip_NoSlip, Slip_Vector_sum, FSS_sum_temp, FSS
 
 	# Publishing desired data
 	#pub.publish(Slip_NoSlip)
 	pub2.publish(Slip_Vector_sum)
 	pub3.publish(FSS_sum_temp)
+	#pub3.publish(FSS)
 
 	# Displaying the data on the log
 	threading.Timer(thread_, thread_run).start()
 
 def talker():
-	global pub, pub2, pub3, Slip_NoSlip, Slip_Vector_sum, FSS_sum_temp, FSS, FSS_previous, FSS_sum, Slip_Vector, Slip_Vector, Slip_NoSlip, Diff_Matrix
+	global pub, pub2, pub3, Slip_NoSlip, Slip_Vector_sum, FSS_sum_temp, FSS, FSS_previous, FSS_sum, Slip_Vector, Slip_Vector, Slip_NoSlip, Diff_Matrix, FSS
 	
 	# Initializing the node with the name 'SlipDetection'
 	rospy.init_node('SlipDetection', anonymous=True)
@@ -71,7 +72,8 @@ def talker():
 	pub = rospy.Publisher('Slip_NoSlip', Slip_Detection_msg, queue_size=1)
 	pub2 = rospy.Publisher('Slip_Vector_sum', Slip_Vector_msg, queue_size=1)
 	pub3 = rospy.Publisher('FSS_sum', FSS_sum_msg, queue_size= 1)
-	
+	#pub3 = rospy.Publisher('FSS', Slip_Vector_msg, queue_size=1)
+
 	ser.reset_input_buffer()
 	ser_.reset_input_buffer()
 	thread_run()
@@ -94,7 +96,7 @@ def talker():
 			FSS[5:10] = np.array(struct.unpack('<lllll', response_[:-1]))
 			
 			# Normalization with normalizer_constant (8000000 = an approx of 2^23 is default)
-			FSS = FSS/normalizer_constant	
+			FSS = FSS/normalizer_constant
 			
 			# Summing up the 10-channel FSS data
 			FSS_sum_temp = FSS.sum()
@@ -131,7 +133,7 @@ def talker():
 				# Filtering out the first data of FFT
 				FFT_Vector = FFT_Vector[0:n_frequency]
 				# Inserting the FFT data in to the first n_frequency positions of Slip Vector array
-				Slip_Vector[0:n_frequency] = abs(FFT_Vector)		
+				Slip_Vector[0:n_frequency] = abs(FFT_Vector)
 
 				# Inserting the Slip Vector array in to the Slip Vector sum queue
 				Slip_Vector_sum = np.hstack((Slip_Vector, Slip_Vector_sum))
@@ -143,7 +145,7 @@ def talker():
 					# Reshaping the Slip Vector sum to fit the classification algorithm
 					Slip_Vector_sum_Reshaped = Slip_Vector_sum.reshape(1, (n_lookback+1)*(n_frequency+1))
 					# Conducting the Classification algorithm for a binary output
-					Slip_NoSlip = MLP_Model.predict(Slip_Vector_sum_Reshaped)
+					#Slip_NoSlip = MLP_Model.predict(Slip_Vector_sum_Reshaped)
 
 if __name__ == '__main__':
     try:
