@@ -432,6 +432,76 @@ title('FFT Data of Sample Frequency 40Hz at 3 Different Phases', 'FontSize', 32)
 legend('Severe Slip (Timestep 2100)', 'Mild Slip (Timestep 1600)', 'No Slip (Timestep 500)')
 %}
 
+%% Plotting P-value Results for Data_Selection
+%{
+Derivative_Slip_Data = Force_Derivative(1500:2080);
+Derivative_Non_Slip_Data = Force_Derivative(1:1500);
+Covariance_Slip_Data = Cov_Array_3(1500:2080);
+Covariance_Non_Slip_Data = Cov_Array_3(1:1500);
+
+FFT_Non_Slip_Data = [];
+k=1;
+for i = 81:1500
+    Fs = 80;
+    FSS_sum_array = FSS_sum(i-Fs:i);
+    FSS_sum_FFT = fft(FSS_sum_array);
+    P2 = abs(FSS_sum_FFT/Fs);
+    P1 = P2(1:Fs/2+1);
+    P1(2:end-1) = 2*P1(2:end-1);
+    f = Fs*(0:(Fs/2))/Fs;
+    f = f(2:end);
+    P1 = P1(2:end);
+    FFT_Non_Slip_Data(k,:) = P1;
+    k=k+1;
+end
+
+FTT_Slip_Data = [];
+k=1;
+for i = 1501:2080
+    Fs = 80;
+    FSS_sum_array = FSS_sum(i-Fs:i);
+    FSS_sum_FFT = fft(FSS_sum_array);
+    P2 = abs(FSS_sum_FFT/Fs);
+    P1 = P2(1:Fs/2+1);
+    P1(2:end-1) = 2*P1(2:end-1);
+    f = Fs*(0:(Fs/2))/Fs;
+    f = f(2:end);
+    P1 = P1(2:end);
+    FFT_Slip_Data(k,:) = P1;
+    k=k+1;
+end
+
+h_FFT_value=[];
+p_FFT_value = [];
+for i=1:Fs/2
+    FFT_Slip_Data_ = FFT_Slip_Data(:,i);
+    FFT_Non_Slip_Data_ = FFT_Non_Slip_Data(:,i);
+    
+    [h_FFT, p_FFT] = kstest2(FFT_Slip_Data_, FFT_Non_Slip_Data_, 'Alpha', 0.05);
+        
+    h_FFT_value(i) = h_FFT;
+    p_FFT_value(i) = p_FFT;
+end
+
+h_FFT = sum(h_FFT_value)/(Fs/2);
+p_FFT = sum(p_FFT_value)/(Fs/2);
+
+[h_Derivative, p_Derivative] = kstest2(Derivative_Slip_Data, Derivative_Non_Slip_Data, 'Alpha', 0.05);
+[h_Covariance, p_Covariance] = kstest2(Covariance_Slip_Data, Covariance_Non_Slip_Data, 'Alpha', 0.05);
+
+figure(1)
+set(gcf, 'Position', [500 0 1000 800], 'color', 'white')
+Legend = {'Force Sum', 'Force Derivative', 'Covariance', 'FFT Data (Avg)'};
+X = [h_Derivative, h_Covariance, h_FFT];
+Y = [p_Derivative, p_Covariance, p_FFT];
+
+bar(Y)
+set(gca, 'xticklabel', Legend, 'FontSize', 16)
+grid on
+title('Bar Graph of the P-Values of Each Processed Data', 'FontSize', 20)
+ylabel('P-Value', 'FontSize', 16)
+%}
+
 %% Plotting Covariance for 3 Window Sizes
 %{
 figure(1)
@@ -559,75 +629,200 @@ for i = 1000:10:2250
 end
 %}
 
-%% Plotting P-value Results for Data_Selection
+%% Plotting Further Investigation for Frequency (P-value and Decay Time)
 %{
-Derivative_Slip_Data = Force_Derivative(1500:2080);
-Derivative_Non_Slip_Data = Force_Derivative(1:1500);
-Covariance_Slip_Data = Cov_Array_3(1500:2080);
-Covariance_Non_Slip_Data = Cov_Array_3(1:1500);
-
+k=1;
+for j = 20:2:80
+    for i = 1500:1960-1
+        Fs = j;
+        FSS_sum_array = FSS_sum(i-Fs:i);
+        FSS_sum_FFT = fft(FSS_sum_array);
+        P2 = abs(FSS_sum_FFT/Fs);
+        P1 = P2(1:Fs/2+1);
+        P1(2:end-1) = 2*P1(2:end-1);
+        f = Fs*(0:(Fs/2))/Fs;
+        f = f(2:end);
+        P1 = P1(2:end);
+        FFT_Slip_Data(k,1:j/2) = P1;
+        k=k+1;
+    end
+    X = ['Slip', num2str(j)];
+    disp(X)
+end
+    
 FFT_Non_Slip_Data = [];
 k=1;
-for i = 81:1500
-    Fs = 80;
-    FSS_sum_array = FSS_sum(i-Fs:i);
-    FSS_sum_FFT = fft(FSS_sum_array);
-    P2 = abs(FSS_sum_FFT/Fs);
-    P1 = P2(1:Fs/2+1);
-    P1(2:end-1) = 2*P1(2:end-1);
-    f = Fs*(0:(Fs/2))/Fs;
-    f = f(2:end);
-    P1 = P1(2:end);
-    FFT_Non_Slip_Data(k,:) = P1;
-    k=k+1;
+for j = 20:2:80
+    for i = 81:1500-1
+        Fs = j;
+        FSS_sum_array = FSS_sum(i-Fs:i);
+        FSS_sum_FFT = fft(FSS_sum_array);
+        P2 = abs(FSS_sum_FFT/Fs);
+        P1 = P2(1:Fs/2+1);
+        P1(2:end-1) = 2*P1(2:end-1);
+        f = Fs*(0:(Fs/2))/Fs;
+        f = f(2:end);
+        P1 = P1(2:end);
+        FFT_Non_Slip_Data(k,1:j/2) = P1;
+        k=k+1;
+    end
+    X = ['Non Slip', num2str(j)];
+    disp(X)
 end
-
-FTT_Slip_Data = [];
-k=1;
-for i = 1501:2080
-    Fs = 80;
-    FSS_sum_array = FSS_sum(i-Fs:i);
-    FSS_sum_FFT = fft(FSS_sum_array);
-    P2 = abs(FSS_sum_FFT/Fs);
-    P1 = P2(1:Fs/2+1);
-    P1(2:end-1) = 2*P1(2:end-1);
-    f = Fs*(0:(Fs/2))/Fs;
-    f = f(2:end);
-    P1 = P1(2:end);
-    FFT_Slip_Data(k,:) = P1;
-    k=k+1;
-end
-
+    
 h_FFT_value=[];
 p_FFT_value = [];
-for i=1:Fs/2
-    FFT_Slip_Data_ = FFT_Slip_Data(:,i);
-    FFT_Non_Slip_Data_ = FFT_Non_Slip_Data(:,i);
+
+k=1;
+
+FFT_Sum_Slip_Data = [];
+for j = 20:2:80
+    for i = 1500:1960-1
+        FFT_Sum_Slip_Data(k) = sum(FFT_Slip_Data(k,:));
+        k = k+1;
+    end
+end
+
+k=1;
+FFT_Sum_Non_Slip_Data = [];
+for j = 20:2:80
+    for i = 1:1500-1-81
+        FFT_Sum_Non_Slip_Data(k) = sum(FFT_Non_Slip_Data(k,:));
+        k = k+1;
+    end
+end
+
+for i=1:31
+    FFT_Slip_Data_ = FFT_Slip_Data((i-1)*460+1:(i-1)*460+460);
+    FFT_Non_Slip_Data_ = FFT_Non_Slip_Data((i-1)*1499+1:(i-1)*1499+1499);
     
-    [h_FFT, p_FFT] = kstest2(FFT_Slip_Data_, FFT_Non_Slip_Data_, 'Alpha', 0.05);
+    [h_FFT, p_FFT] = kstest2(FFT_Slip_Data_, FFT_Non_Slip_Data_);
         
     h_FFT_value(i) = h_FFT;
     p_FFT_value(i) = p_FFT;
+    X = ['Test', num2str(i)];
+    disp(X)
 end
 
-h_FFT = sum(h_FFT_value)/(Fs/2);
-p_FFT = sum(p_FFT_value)/(Fs/2);
-
-[h_Derivative, p_Derivative] = kstest2(Derivative_Slip_Data, Derivative_Non_Slip_Data, 'Alpha', 0.05);
-[h_Covariance, p_Covariance] = kstest2(Covariance_Slip_Data, Covariance_Non_Slip_Data, 'Alpha', 0.05);
+p_FFT_value = [-88, -90, -100, -99, -104, -113, -113, -113, -116, -126, -129, -130, -126, -133, -128,...
+    -139, -134, -135, -145, -145, -146, -144, -146, -147, -149, -155, -157, -158, -158, -172, -266];
 
 figure(1)
-set(gcf, 'Position', [500 0 1000 800], 'color', 'white')
-Legend = {'Force Sum', 'Force Derivative', 'Covariance', 'FFT Data (Avg)'};
-X = [h_Derivative, h_Covariance, h_FFT];
-Y = [p_Derivative, p_Covariance, p_FFT];
+set(gcf, 'Position', [500 0 1400 800], 'color', 'white')
+Legend = [10:40];
 
-bar(Y)
-set(gca, 'xticklabel', Legend, 'FontSize', 16)
+bar(Legend, p_FFT_value, 'FaceColor', [0.8500 0.3250 0.0980])
 grid on
-title('Bar Graph of the P-Values of Each Processed Data', 'FontSize', 20)
-ylabel('P-Value', 'FontSize', 16)
+title('Exponential of P-Values of Each Number of Sample Frequency', 'FontSize', 26)
+xlabel('Number of Sample Frequencies', 'FontSize', 20)
+ylabel('P-Value', 'FontSize', 20)
+xticks(10:2:40)
+set(gca, 'FontSize', 20)
+
+FFT_Post_Slip_Data = [];
+k=1;
+for j = 20:2:80
+    for i = 2080:2200-1
+        Fs = j;
+        FSS_sum_array = FSS_sum(i-Fs:i);
+        FSS_sum_FFT = fft(FSS_sum_array);
+        P2 = abs(FSS_sum_FFT/Fs);
+        P1 = P2(1:Fs/2+1);
+        P1(2:end-1) = 2*P1(2:end-1);
+        f = Fs*(0:(Fs/2))/Fs;
+        f = f(2:end);
+        P1 = P1(2:end);
+        FFT_Post_Slip_Data(k,1:j/2) = P1;
+        k=k+1;
+    end
+    X = ['Post Slip', num2str(j)];
+    disp(X)
+end
+
+Non_Slip_Data_Mean = [];
+for j = 1:31
+    Mean = 0;
+    for i = 1:1419
+       temp = sum(FFT_Non_Slip_Data(i+(j-1)*1419,:));
+       Mean = Mean + temp/(9+j);
+    end
+    Non_Slip_Data_Mean(j) = Mean/1419;
+end
+
+Decay_Time = [];
+Mean_Post = 0;
+for j = 1:31
+    for i = 1:120
+        temp = sum(FFT_Post_Slip_Data(i+(j-1)*120,1:10));
+        Mean_Post = (temp/10)/i;
+        if(Mean_Post<Non_Slip_Data_Mean(j))
+            Decay_Time(j)=i;
+            break
+        end
+    end
+end
+
+Decay_Time = Decay_Time/300;
+
+figure(2)
+set(gcf, 'Position', [500 0 1400 800], 'color', 'white')
+Legend = [10:40];
+
+bar(Legend, Decay_Time, 'FaceColor', [0.9290 0.6940 0.1250])
+grid on
+title('Decay Time of Each Number of Sample Frequency', 'FontSize', 26)
+xlabel(' Number of Sample Frequencies', 'FontSize', 20)
+ylabel('Decay Time(s)', 'FontSize', 20)
+xticks(10:10:150)
+set(gca, 'FontSize', 20)
 %}
+
+%% Plotting Online Evaluation Results
+FSS_sum = sum(transpose(FSS_Together));
+Prediction = csvread('Online_Data.csv');
+
+for i = 1:5:2200
+    
+    figure(1)
+    set(gcf, 'Position', [0 50 1800 800], 'color', 'white')
+    plot(FSS_sum(1:2200), 'LineWidth', 8)
+    hold on
+    xline(i, 'r', 'LineWidth', 4)
+    hold off
+    ylabel('FSS Signal Sum', 'FontSize', 20)
+    xlabel('Timestep', 'FontSize', 20)
+    xlim([0 2250])
+    ylim([-0.04 0.25])
+    grid on
+    
+    if(i<1500)
+        text(200, 0, 'Ground Truth: No Slip', 'FontSize', 26)
+    elseif(i<2080)
+        text(200, 0, 'Ground Truth: Slip', 'Color', 'red', 'FontSize', 26)
+    else
+        text(200, 0, 'Ground Truth: No Slip', 'FontSize', 26)
+    end
+    
+    if(Prediction(i)==1)
+        text(200, 0, 'Prediction: Slip', 'Color', 'red', 'FontSize', 26)
+    else
+        text(200, 0, 'Prediction: No Slip', 'FontSize', 26)
+    end
+
+    h = suptitle(['Slip Detection Online Evaluation - MLP Network (Timestep: ' num2str(i-1), ')']);
+    set(h, 'FontSize', 26)
+   
+    frame = getframe(1);
+    im = frame2im(frame);
+    [imind, cm] = rgb2ind(im,256);
+    filename_ = 'OfflineResults.gif';
+    del = 0.05;
+    if(i == 1)
+      imwrite(imind,cm,filename_,'gif','Loopcount',inf,'DelayTime',del);
+    else
+      imwrite(imind,cm,filename_,'gif','WriteMode','append','DelayTime',del);
+    end
+end
 
 %% Plotting Confusion Matrix
 %{
