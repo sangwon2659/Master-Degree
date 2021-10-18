@@ -25,7 +25,7 @@ n_ch = 5
 
 # Declaring an array to store data and display it later
 # Variables for FSS and FSS sum
-FSS = np.zeros(10)
+FSS = np.array([0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0])
 FSS_previous = FSS
 FSS_sum_temp = 0.0
 n_sample = n_frequency * 2
@@ -87,7 +87,8 @@ def talker():
 
             # Normalization with normalizer_constant (8000000 = an approx of 2^23 is default)
             # Summing up the 10-channel FSS data
-            FSS_sum_temp = (FSS / normalizer_constant).sum()
+            FSS = FSS / normalizer_constant
+            FSS_sum_temp = FSS.sum()
 
             # Putting FSS data into FSS_sum queue
             # if len(FSS_sum) <= n_sample:
