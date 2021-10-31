@@ -1,27 +1,24 @@
 import numpy as np
 import tensorflow as tf
+import matplotlib.pyplot as plt
 from keras import optimizers
 from numpy import array
 from keras.models import Sequential
 from keras.layers import Dense, LSTM
+import pandas as pd
 
-FFT_Hz = 50
+FFT_Hz = 41
 train_min = 0
-train_max = 7862
-test_min = 6500
-test_max = 7500
-epoch = 100
+train_max = 5961
+test_min = 5000
+test_max = 5961
+epoch = 500
 
 # Loading data
-data = np.loadtxt("Data_Realtime.csv", delimiter=",")
+data = np.loadtxt("Training_Data_Aluminum.csv", delimiter=",")
 
 train_sample_num = train_max - train_min
-
-#data_FFTCov = data[:, 0:FFT_Hz]
-#data_max_FFT = data_FFTCov[:, 0:FFT_Hz-1].max()  
-#data_max_Cov = data_FFTCov[:, FFT_Hz-1].max()
-#data[:, 0:FFT_Hz-1] = data[:, 0:FFT_Hz-1]/data_max_FFT
-#data[:, FFT_Hz-1] = data[:, FFT_Hz-1]/data_max_Cov
+test_sample_num = test_max - test_min
 
 # Filtering data
 x_train_data = data[train_min:train_max, 0:FFT_Hz]
@@ -53,7 +50,6 @@ for i in range(test_max-test_min):
 print(np.shape(x_test_data[0]))
 
 # Defining model
-# Activation function: ReLU and for the last one Sigmoid since binary classification
 model = Sequential()
 model.add(Dense(1024, input_shape=(FFT_Hz,), activation='relu'))
 model.add(Dense(512, activation='relu'))
@@ -65,17 +61,28 @@ model.add(Dense(1, activation='sigmoid'))
 
 model.summary()
 
-# Binary classification so binary_crossentropy
-# Is 'adam' the most suitable optimizer?
 model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
 history = model.fit(x_train_data, y_train_data, epochs=epoch, batch_size=10, verbose=1)
 
+# Displaying loss history
+plt.plot(history.history['loss'])
+plt.title('Model Loss')
+plt.ylabel('Loss')
+plt.xlabel('Epoch')
+plt.show()
+
+plt.plot(history.history['accuracy'])
+plt.title('Model Accuracy')
+plt.ylabel('Accuracy')
+plt.xlabel('Epoch')
+plt.show()
+
 # Evaluating results
 evaluation = model.evaluate(x_test_data, y_test_data)
+print("Test Loss: // Test Accuracy:")
+print(evaluation)
 
-x_test_data_ = x_test_data[0]
-x_test_data_ = x_test_data_.reshape(1,FFT_Hz)
-prediction = model.predict(x_test_data_)
-print(prediction)
+df = pd.DataFrame(history.history['accuracy'])
+df.to_csv('Accuracy_Paper.csv')
 
-model.save("MLP_Model.h5")
+model.save("MLP_Model_Paper.h5")
