@@ -31,8 +31,8 @@ path_data = np.loadtxt("Manipulator_Pick_and_Place.csv", delimiter=",")
 DXL_ID = [1,2,3,4,5] # 5 is the gripper
 # Default 180.00, 172.00, 180,00, 270.00, 180.00
 # Angle for joints 1~4 and gripper
-#joint_angle_data_collection = [180.00, 172.00, 180.00, 270.00, 180.00]
-joint_angle_data_collection = [180.00, path_data[0][0], path_data[0][1], path_data[0][2], 180.00]
+joint_angle_data_collection = [180.00, 172.00, 180.00, 270.00, 218.0]
+#joint_angle_data_collection = [180.00, path_data[0][0], path_data[0][1], path_data[0][2], 180.00]
 
 Num_of_DXL = len(DXL_ID)
 param_goal_position = [None]*Num_of_DXL
@@ -43,7 +43,7 @@ for i in range(Num_of_DXL):
     joint_angle_data_collection[i] = int((joint_angle_data_collection[i]/360) * 4095)
 
 BAUDRATE = 1000000  # Dynamixel default baudrate : 57600
-DEVICENAME = '/dev/ttyUSB3'
+DEVICENAME = '/dev/ttyUSB1'
 
 portHandler = PortHandler(DEVICENAME)
 packetHandler = PacketHandler(PROTOCOL_VERSION)
@@ -89,7 +89,7 @@ def callback(data):
 def dxl_main():
     global joint_angle_data_collection
     rospy.init_node('Motor', anonymous=True)
-    rate = rospy.Rate(10000)
+    rate = rospy.Rate(10)
     count = 1
 
     while not rospy.is_shutdown():
@@ -139,14 +139,16 @@ def dxl_main():
         #DXL_ID[k], joint_angle_data_collection[k], dxl_present_position[k]))
 
         # Changing joint_angle_data_collection for pick_and_place purpose
+        '''
         joint_angle_data_collection = [180.00, path_data[count][0], path_data[count][1], path_data[count][2], 180.00]
         for i in range(Num_of_DXL):
             joint_angle_data_collection[i] = int((joint_angle_data_collection[i]/360) * 4095)
         print(joint_angle_data_collection)
         if count < np.shape(path_data)[0]:
             count += 1
+        '''
 
-        #rate.sleep()
+        rate.sleep()
 
 if __name__ == '__main__':
     try:
